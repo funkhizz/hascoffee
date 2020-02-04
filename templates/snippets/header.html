@@ -18,21 +18,15 @@
     </div>
   </div>
   <div class="homepage-header-table">
-    <div class="title">Hascoffee</div>
+    <div class="title title-grey">Hascoffee</div>
     <ul class="nav-link-main">
-      <li class="nav-link">Coffee</li>
-      <li class="nav-link">Subscriptions</li>
-      <li class="nav-link">Equipment</li>
-      <li class="nav-link">Merchandise</li>
-      <li class="nav-link">Other drinks</li>
+      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Coffee</a></li>
+      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Subscriptions</a></li>
+      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Equipment</a></li>
+      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Merchandise</a></li>
+      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Other drinks</a></li>
     </ul>
   </div>
-  <div class="best-product">
-    <h2>New coffee</h2>
-    <strong>El mega coffee</strong>
-    <p>Finca Las Brumas Washed SL28</p>
-  </div>
-  <a class="buy-button" href="#">Check it out <span>&rarr;</span></a>
 </div>
 {% else %}
 <div class="homepage-header">
@@ -57,11 +51,11 @@
   <div class="homepage-header-table">
     <div class="title">Hascoffee</div>
     <ul class="nav-link-main">
-      <li class="nav-link">Coffee</li>
-      <li class="nav-link">Subscriptions</li>
-      <li class="nav-link">Equipment</li>
-      <li class="nav-link">Merchandise</li>
-      <li class="nav-link">Other drinks</li>
+      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Coffee</a></li>
+      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Subscriptions</a></li>
+      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Equipment</a></li>
+      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Merchandise</a></li>
+      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Other drinks</a></li>
     </ul>
   </div>
   <div class="best-product">

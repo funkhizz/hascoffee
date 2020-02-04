@@ -42,18 +42,17 @@
 <!-- New products -->
 <div class="new-section">
     <h2>New in!</h2>
-    <div class="product-list-section">
+    <div class="product-list-section products-row-gap ">
       {% for obj in object_list %}
-      <div class="product">
-        <a href="www.one.lv">
+      <div class="product small">
+        <a href="#">
           <span class="product-pic">
-            <img src="{% static 'img/product-pic.jpg' %}" alt="" >
+            <img src="{{ obj.photo_main.url }}" alt="" >
           </span>
-          <span class="product-title">India natural coffee</span>
-          <p class="product-content">Sultana, marzipan, cherry jam, Armagnac</p>
-          <p class="product-price">£8.00</p>
+          <span class="product-title">{{ obj.title}}</span>
+          <p class="product-content">{{ obj.ingridients}}</p>
+          <p class="product-price">£{{obj.price}}</p>
         </a>
-
       </div>
       {% endfor %}
     </div>
@@ -113,54 +112,9 @@
 </div>
 </div>
 
-<div class="homepage-footer">
-    <div class="contact">
-      <h3>Contact us</h3>
-      <p>Email: <a href="#">orders@hasbean.co.uk</a></p>
-      <p>Hasbean</p>
-      <p>Unit 16, Ladford Covert</p>
-      <p>Ladfordfields Industrial Estate</p>
-      <p>Stafford</p>
-      <p>ST18 9QL</p>
-      <p>United Kingdom</p>
-    </div>
-    <div class="follow">
-      <h3>Follow us</h3>
-      <span class="folow-icon">
-        <a href="#" class="fa fa-twitter"></a>
-      </span>
-      <span class="folow-icon">
-        <a href="#" class="fa fa-facebook"></a>
-      </span>
-      <span class="folow-icon">
-        <a href="#" class="fa fa-instagram"></a>
-      </span>
-      <span class="folow-icon">
-        <a href="#" class="fa fa-youtube"></a>
-      </span>
-    </div>
-    <div class="newsletter">
-      <h3>Newsletter</h3>
-      <p>Want to stay up to date with Hasbean via our newsletter?</p>
-      <p>To subscribe, enter your details below.</p>
-      <form action="" class="newsletter-form">
-        <input type="text" class="news-name" placeholder="First name" required>
-        <input type="text"class="news-surname" placeholder="Last name" required>
-        <input type="email" class="news-email" placeholder="Email" required>
-        <button class="news-button"><span>Subscribe</span><span>&rarr;</button>
-      </form>
-    </div>
-    <div class="policy">
-      <div class="policy-span">
-        <span>Copyright © 2020, Hascofee</span>
-        <span>All rights reserved</span>
-        <span><a href="#">Privacy policy</a></span>
-        <span><a href="#">Terms and Conditions</a></span>
-      </div>
-      <div class="policy-bottom">
-        hasbean.co.uk uses cookies to help us improve your experience. By continuing to browse you are agreeing to our <a href="#">use of cookies</a>. Mmm cookies.
-      </div>
-    </div>
+<div class="" style="margin: 0 30rem;">
+  {% include 'snippets/footer.html' %}
+
 </div>
 
 </div>

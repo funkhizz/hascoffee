@@ -1,0 +1,67 @@
+.products {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    left: 0;
+    margin: 0 30rem;
+}
+
+.products {
+    border-top: 1px solid #dddddd;
+}
+
+.breadcrumb {
+    background-color: white;
+    margin-top: 4rem;
+    font-size: 2rem;
+}
+
+.breadcrumb-item a {
+    color: #e20613;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.breadcrumb-item :hover {
+    color: #e20613;
+    text-decoration: none;
+    filter: brightness(150%);
+}
+
+.pre-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-name {
+    font-size: 3.4rem;
+    color: #e20613;
+}
+
+.section-sort {
+    font-size: 2rem;
+    color: #6d6d6d;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+
+select {
+    background-color: white;
+    font-size: 1.4rem;
+    padding: 1rem 0;
+    border: 1px solid #dddddd;
+    color: #777777;
+    border-radius: 4px;
+    background-image: url('/static_project/icons/email.svg');
+    background-position-x: 244px;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance: none;
+    width: 14rem;
+}
+
+.sort-by {
+    margin-right: 2rem;
+}

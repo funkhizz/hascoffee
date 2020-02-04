@@ -1,0 +1,111 @@
+.products {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    left: 0;
+    margin: 0 30rem;
+    border-top: 1px solid #dddddd;
+}
+
+
+.breadcrumb {
+    background-color: white;
+    margin-top: 4rem;
+    font-size: 2rem;
+}
+
+.breadcrumb-item a {
+    color: #e20613;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.breadcrumb-item :hover {
+    color: #e20613;
+    text-decoration: none;
+    filter: brightness(150%);
+}
+
+.pre-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-name {
+    font-size: 3.4rem;
+    color: #e20613;
+}
+
+.section-sort {
+    font-size: 2rem;
+    color: #6d6d6d;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+
+select {
+    background-color: white;
+    font-size: 1.4rem;
+    padding: 1rem 0;
+    border: 1px solid #dddddd;
+    color: #777777;
+    border-radius: 4px;
+    background-image: url('../icons/down-arrow.svg');
+    background-size: 20px 30px;
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 32%;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance: none;
+    width: 14rem;
+}
+
+.sort-by {
+    margin-right: 2rem;
+}
+
+.products-row-gap {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22rem, min-content));
+    margin-bottom: 3rem;
+}
+
+.paginator {
+    display: grid;
+    justify-content: center;
+    margin-bottom: 8rem;
+    border: none;
+}
+
+.paginator li a{
+    border: none;
+    font-size: 2rem;
+    color: #dddddd;
+}
+
+.pagination > .active > a
+{
+    color: #e20613 !important;
+    background-color: white !Important;
+}
+
+.pagination > li > a
+{
+    background-color: white;
+    color: #777777;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #777777;
+    background-color: white;
+    border-color: #ddd;
+}
+
