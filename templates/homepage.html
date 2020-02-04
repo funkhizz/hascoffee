@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block base_head%}
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="homapage">
+  <!-- Carousel -->
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="{% static 'img/coffee_hands.jpeg' %}" alt="First slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{% static 'img/coffee_tree.jpg' %}" alt="Second slide">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="{% static 'img/artisan-coffee-beans.jpg' %}" alt="Third slide">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  <!-- Header sticked to carousel -->
+  <div class="homepage-header">
+    <ul class="header-nav">
+      <li class="header-item">Wholesale</li>
+      <li class="header-item">Resources</li>
+      <li class="header-item">Community</li>
+      <li class="header-item">Contact</li>
+      <li class="header-item">Help</li>
+    </ul>
+    <div class="header-right-block">
+      <div class="right-block-accaout">Account</div>
+      <div class="right-block-cart">Cart</div>
+      <form action="">
+        <input type="text">
+      </form>
+    </div>
+  </div>
+  <div class="homepage-header-table">
+    <div class="title">Hascoffee</div>
+    <ul class="nav-link-main">
+      <li class="nav-link">Coffee</li>
+      <li class="nav-link">Subscriptions</li>
+      <li class="nav-link">Equipment</li>
+      <li class="nav-link">Merchandise</li>
+      <li class="nav-link">Other drinks</li>
+    </ul>
+  </div>
+  <div class="best-product">
+    <h2>New coffee</h2>
+    <strong>El mega coffee</strong>
+    <p>Finca Las Brumas Washed SL28</p>
+  </div>
+  <a class="buy-button" href="#">Check it out <span>&rarr;</span></a>
+</div>
+
+<!-- New products -->
+<div class="new-section">
+    <h2>New in!</h2>
+    <div class="product-list-section">
+      {% for obj in object_list %}
+      <div class="product">
+        <a href="www.one.lv">
+          <span class="product-pic">
+            <img src="{% static 'img/product-pic.jpg' %}" alt="" >
+          </span>
+          <span class="product-title">India natural coffee</span>
+          <p class="product-content">Sultana, marzipan, cherry jam, Armagnac</p>
+          <p class="product-price">£8.00</p>
+        </a>
+
+      </div>
+      {% endfor %}
+    </div>
+</div>
+
+<!-- Subscription section -->
+<div class="subscription-section">
+  <div class="subscription">
+    <div class="subs-feature">
+      <h2>In My Mug coffee subscriptions</h2>
+      <p>Not sure what an In My Mug coffee subscription is?</p>
+      <a href="#" class="subs-a">Find out more here.</a>
+      <a class="subs-button" href="#">View subscriptions<span>&rarr;</span></a>
+
+    </div>
+    <div class="subs-feature">
+      <div class="icon">
+        <img src="{% static 'img/red.png' %}" alt="" srcset="" class="icon-svg">
+      </div>
+  </div>
+</div>
+</div>
+
+<!-- Best selling products -->
+<div class="new-section mt-3">
+  <h2>Best sellers!</h2>
+  <div class="product-list-section new-grid ">
+    {% for obj in new_object_list %}
+    <div class="product small-height">
+      <a href="www.one.lv">
+        <span class="product-pic">
+          <img src="{% static 'img/best-coffee.jpeg' %}" alt="" >
+        </span>
+        <span class="product-title">India natural coffee</span>
+        <p class="product-content">Sultana, marzipan, cherry jam, Armagnac</p>
+        <p class="product-price">£8.00</p>
+      </a>
+     </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Abouts us -->
+<div class="subscription-section about-us">
+  <div class="subscription">
+    <div class="subs-feature about-subs">
+      <h2>About us</h2>
+      <p>We're obsessed with the range of flavours that coffee can offer.</p>
+      <p>We want to share those flavours, whilst making remarkable coffee more available, sustainable, and consistently delicious.</p>
+
+    </div>
+    <div class="subs-feature about-subs">
+      <div class="icon coffee-img">
+        <img src="{% static 'img/coffee-cup1.png' %}" alt="" srcset="" class="icon-svg">
+      </div>
+  </div>
+</div>
+</div>
+
+<div class="homepage-footer">
+    <div class="contact">
+      <h3>Contact us</h3>
+      <p>Email: <a href="#">orders@hasbean.co.uk</a></p>
+      <p>Hasbean</p>
+      <p>Unit 16, Ladford Covert</p>
+      <p>Ladfordfields Industrial Estate</p>
+      <p>Stafford</p>
+      <p>ST18 9QL</p>
+      <p>United Kingdom</p>
+    </div>
+    <div class="follow">
+      <h3>Follow us</h3>
+      <span class="folow-icon">
+        <a href="#" class="fa fa-twitter"></a>
+      </span>
+      <span class="folow-icon">
+        <a href="#" class="fa fa-facebook"></a>
+      </span>
+      <span class="folow-icon">
+        <a href="#" class="fa fa-instagram"></a>
+      </span>
+      <span class="folow-icon">
+        <a href="#" class="fa fa-youtube"></a>
+      </span>
+    </div>
+    <div class="newsletter">
+      <h3>Newsletter</h3>
+      <p>Want to stay up to date with Hasbean via our newsletter?</p>
+      <p>To subscribe, enter your details below.</p>
+      <form action="" class="newsletter-form">
+        <input type="text" class="news-name" placeholder="First name" required>
+        <input type="text"class="news-surname" placeholder="Last name" required>
+        <input type="email" class="news-email" placeholder="Email" required>
+        <button class="news-button"><span>Subscribe</span><span>&rarr;</button>
+      </form>
+    </div>
+    <div class="policy">
+      <div class="policy-span">
+        <span>Copyright © 2020, Hascofee</span>
+        <span>All rights reserved</span>
+        <span><a href="#">Privacy policy</a></span>
+        <span><a href="#">Terms and Conditions</a></span>
+      </div>
+      <div class="policy-bottom">
+        hasbean.co.uk uses cookies to help us improve your experience. By continuing to browse you are agreeing to our <a href="#">use of cookies</a>. Mmm cookies.
+      </div>
+    </div>
+</div>
+
+</div>
+
+
+{% endblock %}
