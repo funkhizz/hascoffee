@@ -1,0 +1,38 @@
+register{% extends 'base.html' %}
+{% load static %}
+{% block base_head%}
+<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+
+
+{% include 'snippets/header.html' with headerstyle="grey-header" %}
+
+<div class="register">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item active"> Account</li>
+      </ol>
+    </nav>
+
+    <div class="login-section">
+        
+    </div>
+
+
+
+
+{% include 'snippets/footer.html' %}
+
+</div>
+
+
+
+{% endblock %}

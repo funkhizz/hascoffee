@@ -10,9 +10,7 @@
 {% block content %}
 
 
-<div class="product_list">
-    {% include 'snippets/header.html' with headerstyle="grey-header" %}
-</div>
+{% include 'snippets/header.html' with headerstyle="grey-header" %}
 
 <div class="products">
     <nav aria-label="breadcrumb">
@@ -93,11 +91,8 @@
           </div>
     </div>
     {% include 'snippets/footer.html' %}
-
 </div>
 
-<div class="footer-products">
-</div>
 
 
 {% endblock %}
