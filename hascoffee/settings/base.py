@@ -142,5 +142,6 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-django_heroku.settings(locals())
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+django_heroku.settings(locals())
