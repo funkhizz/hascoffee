@@ -198,8 +198,20 @@ dl, ol, ul {
     width: 100%;
 }
 
-.product-pic:hover {
-    filter: brightness(110%);
+.small:hover .product-title {
+    color: red;
+}
+
+.small:hover img {
+    opacity: .75;
+}
+
+.small-height:hover .product-title {
+    color: red;
+}
+
+.small-height:hover img {
+    opacity: .75;
 }
 
 .product-pic img{
@@ -455,6 +467,7 @@ dl, ol, ul {
     width: 20rem;
     display: flex;
     justify-content: space-between;
+    cursor: pointer;
 }
 
 .policy {
@@ -478,10 +491,9 @@ dl, ol, ul {
     font-weight: bolder;
 }
 
-.poolicy-span a:hover {
+.policy-span a:hover {
     text-decoration: none;
-    filter: brightness(130%);
-    color: white;
+    filter: brightness(230%);
 }
 
 .policy-bottom a {
@@ -493,8 +505,7 @@ dl, ol, ul {
 
 .policy-bottom a:hover {
     text-decoration: none;
-    filter: brightness(130%);
-    color: white;
+    filter: brightness(230%);
 }
 
 .carousel-indicators li {

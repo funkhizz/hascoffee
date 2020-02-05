@@ -36,18 +36,16 @@
 
     <div class="product-list-section products-row-gap">
       {% for obj in object_list %}
-      <div class="product">
-        <div class="">
+      <div class="product product-item">
             <a href="#">
                 <div class="product-pic">
                   <img src="{{ obj.photo_main.url }}" alt="" class="product-pic">
                 </div>
-                <span class="product-title">{{ obj.title}}</span>
+                <p class="product-title">{{ obj.title}}</p>
                 <p class="product-content">{{ obj.ingridients}}</p>
                 <p class="product-price">£{{obj.price}}</p>
               </a>
-        </div>
-    </div>
+      </div>
       {% endfor %}
     </div>
 
