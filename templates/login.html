@@ -14,15 +14,18 @@
 
 
 {% include 'snippets/header.html' %}
-{% include 'snippets/breadcrumb.html' %}
+{% include 'snippets/breadcrumb.html' with instance="Account" %}
 
 
 <div class="login">
   <div class="login-form-left">
-    <form action="">
+    {% include 'snippets/alert.html' %}
+
+    <form form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
       <h2 class="login-form-title">Login</h2>
-      <input type="email" class="login-form-left-input" placeholder="Email" required>
-      <input type="text" class="login-form-left-input" placeholder="Password" required>
+      <input name="email" type="email" value="{{account.email}}" class="login-form-left-input" placeholder="Email" required>
+      <input name="password" type="password" class="login-form-left-input" placeholder="Password" required>
       <button class="news-button btn-login"><span>Login</span><span>&rarr;</button>
     </form>
   </div>

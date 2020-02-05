@@ -12,17 +12,21 @@
 
 
 {% include 'snippets/header.html' %}
-{% include 'snippets/breadcrumb.html' %}
+{% include 'snippets/breadcrumb.html' with instance="Create account"%}
 
 
 <div class="register">
     <div class="login-form-left">
-        <form action="">
+      {% include 'snippets/alert.html' %}
+
+        <form action="{% url 'register' %}" method="POST">
+          {% csrf_token %}
           <h2 class="login-form-title">Create account</h2>
-          <input type="text" class="login-form-left-input" placeholder="First Name" required>
-          <input type="text" class="login-form-left-input" placeholder="Last Name" required>
-          <input type="email" class="login-form-left-input" placeholder="Email" required>
-          <input type="password" class="login-form-left-input" placeholder="Password" required>
+          <input type="text" class="login-form-left-input" value="{{account.first_name}}" name="first_name" placeholder="First Name" required>{{first_name}}
+          <input type="text" class="login-form-left-input" name="last_name" value="{{account.last_name}}" placeholder="Last Name" required>
+          <input type="email" class="login-form-left-input" name="email" value="{{account.email}}" placeholder="Email" required>
+          <input type="password" class="login-form-left-input" name="password" placeholder="Password" required>
+          <input type="password" class="login-form-left-input" name="password2" placeholder="Confirm Password" required>
           <button class="news-button btn-login"><span>Create</span><span>&rarr;</button>
         </form>
       </div>
@@ -32,8 +36,4 @@
       </div>
 </div>
 {% include 'snippets/footer.html' %}
-
-
-
-
 {% endblock %}

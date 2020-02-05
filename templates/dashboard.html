@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block base_head%}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<link rel="stylesheet" href="{% static 'css/button.css' %}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+
+
+{% include 'snippets/header.html' %}
+{% include 'snippets/breadcrumb.html' with instance="Dashboard" %}
+
+
+<div class="dashboard">
+    <div class="login-form-left">
+        {% include 'snippets/alert.html' %}
+    <h3>
+        Order History
+    </h3>
+    <p style="color: #919191; font-size: 1.6rem">
+        You haven't placed any orders yet.
+
+    </p>
+
+    </div>
+    <div class="login-form-right">
+        <div class="buttons">
+            <a class="buy-button" href="{% url 'login' %}">Manage wishlist <span>&rarr;</span></a>
+            <form action="{% url 'logout' %}">
+                <button class="news-button btn-login"><span>Log out</span><span>&rarr;</button>
+            </form>
+        </div>
+        <h2 class="login-form-title">Already have an account?</h2>
+        <a href="" class="adresses">View Adresses</a>
+    </div>
+
+</div>
+{% include 'snippets/footer.html' %}
+
+
+
+
+{% endblock %}
