@@ -37,7 +37,42 @@
     </a>
   </div>
   <!-- Header sticked to carousel -->
-{% include 'snippets/header.html' %}
+  <div class="homepage-header">
+    <ul class="header-nav">
+      <li class="header-item">Wholesale</li>
+      <li class="header-item">Resources</li>
+      <li class="header-item">Community</li>
+      <li class="header-item">Contact</li>
+      <li class="header-item">Help</li>
+    </ul>
+    <div class="header-right-block">
+      <div class="right-block-accaunt"><a href="{% url 'login' %}">Account</a></div>
+      <div class="right-block-cart">Cart</div>
+      <div class="right-block-form">
+        <form action="">
+            <input type="text">
+          </form>
+      </div>
+
+    </div>
+  </div>
+  <div class="homepage-header-table">
+    <div class="title">Hascoffee</div>
+    <ul class="nav-link-main">
+      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Coffee</a></li>
+      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Subscriptions</a></li>
+      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Equipment</a></li>
+      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Merchandise</a></li>
+      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Other drinks</a></li>
+    </ul>
+  </div>
+  <div class="best-product">
+    <h2>New coffee</h2>
+    <strong>El mega coffee</strong>
+    <p>Finca Las Brumas Washed SL28</p>
+  </div>
+  <a class="buy-button" href="#">Check it out <span>&rarr;</span></a>
+</div>
 
 <!-- New products -->
 <div class="new-section">
@@ -113,7 +148,55 @@
 </div>
 
 <div class="" style="margin: 0 30rem;">
-  {% include 'snippets/footer.html' %}
+  <div class="homepage-footer">
+    <div class="contact">
+      <h3>Contact us</h3>
+      <p>Email: <a href="#">orders@hasbean.co.uk</a></p>
+      <p>Hasbean</p>
+      <p>Unit 16, Ladford Covert</p>
+      <p>Ladfordfields Industrial Estate</p>
+      <p>Stafford</p>
+      <p>ST18 9QL</p>
+      <p>United Kingdom</p>
+    </div>
+    <div class="follow">
+      <h3>Follow us</h3>
+      <span class="folow-icon">
+        <a href="#" class="fa fa-twitter"></a>
+      </span>
+      <span class="folow-icon">
+        <a href="#" class="fa fa-facebook"></a>
+      </span>
+      <span class="folow-icon">
+        <a href="#" class="fa fa-instagram"></a>
+      </span>
+      <span class="folow-icon">
+        <a href="#" class="fa fa-youtube"></a>
+      </span>
+    </div>
+    <div class="newsletter">
+      <h3>Newsletter</h3>
+      <p>Want to stay up to date with Hasbean via our newsletter?</p>
+      <p>To subscribe, enter your details below.</p>
+      <form action="" class="newsletter-form">
+        <input type="text" class="news-name" placeholder="First name" required>
+        <input type="text"class="news-surname" placeholder="Last name" required>
+        <input type="email" class="news-email" placeholder="Email" required>
+        <button class="news-button"><span>Subscribe</span><span>&rarr;</button>
+      </form>
+    </div>
+    <div class="policy">
+      <div class="policy-span">
+        <span>Copyright © 2020, Hascofee</span>
+        <span>All rights reserved</span>
+        <span><a href="#">Privacy policy</a></span>
+        <span><a href="#">Terms and Conditions</a></span>
+      </div>
+      <div class="policy-bottom">
+        hasbean.co.uk uses cookies to help us improve your experience. By continuing to browse you are agreeing to our <a href="#">use of cookies</a>. Mmm cookies.
+      </div>
+    </div>
+  </div>
 
 </div>
 

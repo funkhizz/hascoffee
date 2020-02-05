@@ -1,8 +1,11 @@
-register{% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block base_head%}
-<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
-<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<link rel="stylesheet" href="{% static 'css/button.css' %}">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
@@ -10,28 +13,30 @@ register{% extends 'base.html' %}
 {% block content %}
 
 
-{% include 'snippets/header.html' with headerstyle="grey-header" %}
-
-<div class="register">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="{% url 'home' %}">Home</a>
-        </li>
-        <li class="breadcrumb-item active"> Account</li>
-      </ol>
-    </nav>
-
-    <div class="login-section">
-        
-    </div>
+{% include 'snippets/header.html' %}
+{% include 'snippets/breadcrumb.html' %}
 
 
+<div class="login">
+  <div class="login-form-left">
+    <form action="">
+      <h2 class="login-form-title">Login</h2>
+      <input type="email" class="login-form-left-input" placeholder="Email" required>
+      <input type="text" class="login-form-left-input" placeholder="Password" required>
+      <button class="news-button btn-login"><span>Login</span><span>&rarr;</button>
+    </form>
+  </div>
+  <div class="login-form-right">
+    <h2 class="login-form-title">Create account</h2>
+    <p>
+      There's no need to create an account before shopping with us if you don't want to, but if you'd like to you can create one by clicking the link below.
+    </p>
+    <a class="buy-button" href="{% url 'register' %}">Create account <span>&rarr;</span></a>
 
-
+  </div>
+</div>
 {% include 'snippets/footer.html' %}
 
-</div>
 
 
 

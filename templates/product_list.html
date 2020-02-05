@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block base_head%}
-<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+
 <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -11,30 +14,26 @@
 
 
 {% include 'snippets/header.html' with headerstyle="grey-header" %}
+{% include 'snippets/breadcrumb.html' %}
 
-<div class="products">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="{% url 'home' %}">Home</a>
-        </li>
-        <li class="breadcrumb-item active"> About</li>
-      </ol>
-    </nav>
-    <div class="pre-section">
-        <div class="section-name">Coffee</div>
-          <div class="section-sort">
-              <div class="sort-by">Sort by</div>
-              <div class="select">
-                  <select class="select-form">
-                      <option value="all">Coffee</option>
-                      <option value="price-low">Price, low to high</option>
-                      <option value="price-high">Price, high to low</option>
-                      <option value="date-new">Date, new to old</option>
-                  </select>
-              </div>
-          </div>
+<div class="pre-section">
+  <div class="section-name">Coffee</div>
+    <div class="section-sort">
+        <div class="sort-by">Sort by</div>
+        <div class="select">
+            <select class="select-form">
+                <option value="all">Coffee</option>
+                <option value="price-low">Price, low to high</option>
+                <option value="price-high">Price, high to low</option>
+                <option value="date-new">Date, new to old</option>
+            </select>
+        </div>
     </div>
+</div>
+<div class="products">
+
+
+
     <div class="product-list-section products-row-gap">
       {% for obj in object_list %}
       <div class="product">
@@ -90,8 +89,9 @@
             {% endif %}
           </div>
     </div>
-    {% include 'snippets/footer.html' %}
 </div>
+{% include 'snippets/footer.html' %}
+
 
 
 

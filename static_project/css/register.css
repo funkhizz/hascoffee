@@ -1,0 +1,64 @@
+.register {
+    margin: 0 30rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2.5rem;
+}
+
+.buy-button {
+    border: none;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+    color: #e83b45;
+    border-radius: 3px;
+    display: block;
+    background-color: white;
+    text-decoration: none;
+    width: 15rem;
+    border: 1px solid #e83b45;
+    cursor: pointer;
+    margin-top: 3rem;
+}
+
+.buy-button:hover {
+    color: #e83b45;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.btn-login {
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+.login-form-left {
+    border: 1px solid #e83b45;
+    padding: 3rem;
+}
+
+.login-form-right {
+    border: 1px solid #dddddd;
+    padding: 3rem;
+    height: 22rem;
+}
+
+.login-form-right p {
+    font-size: 1.5rem;
+    color: #919191;
+}
+
+.login-form-left input {
+    width: 100%;
+    height: 4rem;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+.login-form-title {
+    font-size: 3rem;
+    color: #e83b45;
+    font-weight: bolder;
+}
+
+

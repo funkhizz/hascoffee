@@ -1,33 +1,38 @@
-register{% extends 'base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block base_head%}
-<link rel="stylesheet" href="{% static 'css/homepage.css' %}">
-<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
-
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
 
 
-{% include 'snippets/header.html' with headerstyle="grey-header" %}
-
-<div class="products">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="{% url 'home' %}">Home</a>
-        </li>
-        <li class="breadcrumb-item active"> Create account</li>
-      </ol>
-    </nav>
+{% include 'snippets/header.html' %}
+{% include 'snippets/breadcrumb.html' %}
 
 
-
-
+<div class="register">
+    <div class="login-form-left">
+        <form action="">
+          <h2 class="login-form-title">Create account</h2>
+          <input type="text" class="login-form-left-input" placeholder="First Name" required>
+          <input type="text" class="login-form-left-input" placeholder="Last Name" required>
+          <input type="email" class="login-form-left-input" placeholder="Email" required>
+          <input type="password" class="login-form-left-input" placeholder="Password" required>
+          <button class="news-button btn-login"><span>Create</span><span>&rarr;</button>
+        </form>
+      </div>
+      <div class="login-form-right">
+        <h2 class="login-form-title">Already have an account?</h2>
+        <a class="buy-button" href="{% url 'login' %}">Log in <span>&rarr;</span></a>
+      </div>
+</div>
 {% include 'snippets/footer.html' %}
 
-</div>
 
 
 

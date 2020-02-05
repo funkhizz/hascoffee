@@ -1,4 +1,3 @@
-{% if headerstyle %}
 <div class="homepage-header back-grey">
     <ul class="header-nav">
       <li class="header-item">Wholesale</li>
@@ -8,7 +7,7 @@
       <li class="header-item">Help</li>
     </ul>
     <div class="header-right-block">
-      <div class="right-block-accaout">Account</div>
+      <div class="right-block-accaunt"><a href="{% url 'login' %}">Account</a></div>
       <div class="right-block-cart">Cart</div>
       <div class="right-block-form">
         <form action="">
@@ -20,7 +19,7 @@
   <div class="homepage-header-table">
     <div class="title title-grey">Hascoffee</div>
     <ul class="nav-link-main">
-      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Coffee</a></li>
+      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Coffee <i class="down"></i></a></li>
       <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Subscriptions</a></li>
       <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Equipment</a></li>
       <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Merchandise</a></li>
@@ -28,41 +27,3 @@
     </ul>
   </div>
 </div>
-{% else %}
-<div class="homepage-header">
-    <ul class="header-nav">
-      <li class="header-item">Wholesale</li>
-      <li class="header-item">Resources</li>
-      <li class="header-item">Community</li>
-      <li class="header-item">Contact</li>
-      <li class="header-item">Help</li>
-    </ul>
-    <div class="header-right-block">
-      <div class="right-block-accaout">Account</div>
-      <div class="right-block-cart">Cart</div>
-      <div class="right-block-form">
-        <form action="">
-            <input type="text">
-          </form>
-      </div>
-
-    </div>
-  </div>
-  <div class="homepage-header-table">
-    <div class="title">Hascoffee</div>
-    <ul class="nav-link-main">
-      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Coffee</a></li>
-      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Subscriptions</a></li>
-      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Equipment</a></li>
-      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Merchandise</a></li>
-      <li class="nav-link nav-link-normal"><a href="{% url 'product_list' %}">Other drinks</a></li>
-    </ul>
-  </div>
-  <div class="best-product">
-    <h2>New coffee</h2>
-    <strong>El mega coffee</strong>
-    <p>Finca Las Brumas Washed SL28</p>
-  </div>
-  <a class="buy-button" href="#">Check it out <span>&rarr;</span></a>
-</div>
-{% endif %}
