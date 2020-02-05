@@ -14,7 +14,7 @@
 
 
 {% include 'snippets/header.html' with headerstyle="grey-header" %}
-{% include 'snippets/breadcrumb.html' %}
+{% include 'snippets/breadcrumb.html' with instance="Coffee" %}
 
 <div class="pre-section">
   <div class="section-name">Coffee</div>
@@ -37,7 +37,7 @@
     <div class="product-list-section products-row-gap">
       {% for obj in object_list %}
       <div class="product product-item">
-            <a href="#">
+            <a href="{{obj.get_absolute_url}}">
                 <div class="product-pic">
                   <img src="{{ obj.photo_main.url }}" alt="" class="product-pic">
                 </div>

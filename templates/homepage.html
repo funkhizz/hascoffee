@@ -77,17 +77,19 @@
 <!-- New products -->
 <div class="new-section">
     <h2>New in!</h2>
-    <div class="product-list-section products-row-gap ">
+    <div class="product-list-section">
       {% for obj in object_list %}
-      <div class="product small">
-        <a href="#">
-          <span class="product-pic">
-            <img src="{{ obj.photo_main.url }}" alt="" >
-          </span>
-          <span class="product-title">{{ obj.title}}</span>
-          <p class="product-content">{{ obj.ingridients}}</p>
-          <p class="product-price">£{{obj.price}}</p>
-        </a>
+      <div class="product">
+        <div class="new-product">
+          <a href="#">
+            <span class="product-pic">
+              <img src="{{ obj.photo_main.url }}" alt="" >
+            </span>
+            <span class="product-title">{{ obj.title}}</span>
+            <p class="product-content">{{ obj.ingridients}}</p>
+            <p class="product-price">£{{obj.price}}</p>
+          </a>
+        </div>
       </div>
       {% endfor %}
     </div>
@@ -97,18 +99,18 @@
 <div class="subscription-section">
   <div class="subscription">
     <div class="subs-feature">
-      <h2>In My Mug coffee subscriptions</h2>
-      <p>Not sure what an In My Mug coffee subscription is?</p>
-      <a href="#" class="subs-a">Find out more here.</a>
-      <a class="subs-button" href="#">View subscriptions<span>&rarr;</span></a>
+        <h2>In My Mug coffee subscriptions</h2>
+        <p>Not sure what an In My Mug coffee subscription is?</p>
+        <a href="#" class="subs-a">Find out more here.</a>
+        <a class="subs-button" href="#">View subscriptions<span>&rarr;</span></a>
 
-    </div>
-    <div class="subs-feature">
-      <div class="icon">
-        <img src="{% static 'img/red.png' %}" alt="" srcset="" class="icon-svg">
       </div>
+      <div class="subs-feature">
+        <div class="icon">
+          <img src="{% static 'img/red.png' %}" alt="" srcset="" class="icon-svg">
+        </div>
+    </div>
   </div>
-</div>
 </div>
 
 <!-- Best selling products -->
@@ -116,15 +118,17 @@
   <h2>Best sellers!</h2>
   <div class="product-list-section new-grid ">
     {% for obj in new_object_list %}
-    <div class="product small-height">
-      <a href="www.one.lv">
-        <span class="product-pic">
-          <img src="{% static 'img/best-coffee.jpeg' %}" alt="" >
-        </span>
-        <span class="product-title">India natural coffee</span>
-        <p class="product-content">Sultana, marzipan, cherry jam, Armagnac</p>
-        <p class="product-price">£8.00</p>
-      </a>
+    <div class="product">
+      <div class="new-product">
+        <a href="www.one.lv">
+          <span class="product-pic">
+            <img src="{% static 'img/best-coffee.jpeg' %}" alt="" >
+          </span>
+          <span class="product-title">India natural coffee</span>
+          <p class="product-content">Sultana, marzipan, cherry jam, Armagnac</p>
+          <p class="product-price">£8.00</p>
+        </a>
+      </div>
      </div>
     {% endfor %}
   </div>
@@ -133,19 +137,20 @@
 <!-- Abouts us -->
 <div class="subscription-section about-us">
   <div class="subscription">
-    <div class="subs-feature about-subs">
-      <h2>About us</h2>
-      <p>We're obsessed with the range of flavours that coffee can offer.</p>
-      <p>We want to share those flavours, whilst making remarkable coffee more available, sustainable, and consistently delicious.</p>
+      <div class="subs-feature">
+        <h2>About us</h2>
+        <p>We're obsessed with the range of flavours that coffee can offer.</p>
+        <p>We want to share those flavours, whilst making remarkable coffee more a those flavours, whilst making remarkable coffee more a those flavours, whilst making remarkable coffee more available, sustainable, and consistently delicious.</p>
 
-    </div>
-    <div class="subs-feature about-subs">
-      <div class="icon coffee-img">
-        <img src="{% static 'img/coffee-cup1.png' %}" alt="" srcset="" class="icon-svg">
       </div>
+      <div class="subs-feature">
+        <div class="icon coffee-img">
+          <img src="{% static 'img/coffee-cup1.png' %}" alt="" srcset="" class="icon-svg">
+        </div>
+    </div>
   </div>
 </div>
-</div>
+
 
 <div class="" style="margin: 0 30rem;">
   <div class="homepage-footer">

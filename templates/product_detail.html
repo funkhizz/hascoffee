@@ -1,1 +1,121 @@
-product_detail
+{% extends 'base.html' %}
+{% load static %}
+{% block base_head%}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+
+
+{% include 'snippets/header.html' with headerstyle="grey-header" %}
+
+<nav>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{% url 'product_list' %}">Coffee</a>
+        </li>
+        <li class="breadcrumb-item active">{{object_detail.title}}</li>
+    </ol>
+</nav>
+
+
+<div class="product">
+    <div class="product-main">
+        <div class="product-grid-left">
+            <!-- Thumbnail gallery -->
+            <div class="container">
+                <img id="expandedImg" src="{{object_detail.photo_main.url}}" style="width:100%">
+                <div id="imgtext"></div>
+            </div>
+            <!-- The four columns -->
+            <div class="columns">
+                {% if object_detail.photo_1 %}
+                    <div class="column">
+                        <img src="{{object_detail.photo_1.url}}" alt="1" style="width:100%" onclick="myFunction(this);">
+                    </div>
+                {% endif %}
+                {% if object_detail.photo_2 %}
+                    <div class="column">
+                        <img src="{{object_detail.photo_2.url}}" alt="1" style="width:100%" onclick="myFunction(this);">
+                    </div>
+                {% endif %}
+                {% if object_detail.photo_3 %}
+                    <div class="column">
+                        <img src="{{object_detail.photo_3.url}}" alt="1" style="width:100%" onclick="myFunction(this);">
+                    </div>
+                {% endif %}
+                {% if object_detail.photo_4 %}
+                    <div class="column">
+                        <img src="{{object_detail.photo_4.url}}" alt="1" style="width:100%" onclick="myFunction(this);">
+                    </div>
+                {% endif %}
+                {% if object_detail.photo_5 %}
+                    <div class="column">
+                        <img src="{{object_detail.photo_5.url}}" alt="1" style="width:100%" onclick="myFunction(this);">
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="product-grid-right">
+            <h2 class="product-title">{{object_detail.title}}</h2>
+            <p class="product-ingridients">{{object_detail.ingridients}}</p>
+            <form action="">
+                <div class="quantity-grid">
+                    <div class="grind">
+                        <div class="select">
+                            <label class="select-label">Grind or green</label>
+                            <select name="country" class="select-form select-width">
+                                {% for key, values in grind_choices.items %}
+                                <option value="{{ values }}">{{ values }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="quantity">
+                        <div class="select">
+                            <label class="select-label">Quantity</label>
+                            <select name="country" class="select-form select-width">
+                                {% for key, values in quantity_choices.items %}
+                                <option value="{{ values }}">{{ values }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-price">£{{object_detail.price}}</div>
+                <div class="detail_button">
+                    <button class="news-button button-grid">Add to cart &rarr;</button>
+                </div>
+            </form>
+            <span class="wishlist"></span>
+            <div class="tab-switch">
+                <div class="detail-switch">Details</div>
+            </div>
+            <div class="product-description">{{object_detail.description}}</div>
+            <ul>
+                <li>{{object_detail.country}}</li>
+            </ul>
+        </div>
+    </div>
+  </div>
+
+
+
+{% include 'snippets/footer.html' %}
+
+
+
+<script src="{% static 'js/thumb-gallery.js' %}"></script>
+
+{% endblock %}

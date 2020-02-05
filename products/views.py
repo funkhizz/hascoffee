@@ -2,11 +2,15 @@ from django.shortcuts import render, HttpResponse, get_object_or_404
 from .models import Product
 from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from .quantity_choices import quantity_choices, grind_choices
+
 
 def product_detail(request, slug):
     instance = get_object_or_404(Product, slug=slug)
     context = {
         'object_detail': instance,
+        'quantity_choices': quantity_choices,
+        'grind_choices': grind_choices
     }
     return render(request, "product_detail.html", context)
 

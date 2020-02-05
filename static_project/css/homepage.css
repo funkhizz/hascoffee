@@ -6,7 +6,6 @@ dl, ol, ul {
 .carousel-item img {
     height: 85vh;
 
-
 }
 
 .carousel.slide {
@@ -160,8 +159,7 @@ dl, ol, ul {
 }
 
 .new-section {
-    height: 55rem;
-    margin: 3rem 25rem 0 25rem;
+    margin: 3rem 25rem 5rem 25rem;
 }
 
 .new-section h2 {
@@ -180,7 +178,6 @@ dl, ol, ul {
 
 .product {
     cursor: pointer;
-    height: 37rem;
 }
 
 .product a {
@@ -228,25 +225,30 @@ dl, ol, ul {
 }
 
 .subscription-section {
-    height: 60rem;
     background-color: #fce8e3;
     display: grid;
     margin-bottom: 4rem;
 }
 
 .subscription {
-    margin: 0 15rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     color: #e20613;
+    padding: 10rem 0;
+    margin: 0 25rem;
 }
 
 .subs-feature {
     display: grid;
     grid-gap: 1rem;
-    justify-content: center;
     align-content: center;
 }
+
+.subs-feature .icon {
+    justify-self: center;
+}
+
+
 
 .subs-feature h2 {
     font-weight: 400;
@@ -300,9 +302,7 @@ dl, ol, ul {
     margin-top: 4rem;
 }
 
-.small-height {
-    height: 25rem;
-}
+
 
 .about-us {
     background-color: #e20613;
@@ -315,10 +315,6 @@ dl, ol, ul {
 
 .coffee-img img {
     height: 30rem;
-}
-
-.about-subs {
-    padding: 0 15rem;
 }
 
 .homepage-footer {
@@ -519,10 +515,6 @@ dl, ol, ul {
     margin-left: 5rem;
 }
 
-.small {
-    height: 25rem;
-}
-
 .header-right-block a {
     color: white;
 }
@@ -531,3 +523,4 @@ dl, ol, ul {
     color: white;
     text-decoration: none;
 }
+
