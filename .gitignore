@@ -123,4 +123,3 @@ dmypy.json
 .vscode
 venv/
 local.py
-static_project/
