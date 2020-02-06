@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block base_head%}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/cart_home.css' %}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+
+
+{% include 'snippets/header.html' with headerstyle="grey-header" %}
+
+
+<div class="cart_home">
+    <div class="section-name">Your Cart</div>
+    <div class="cart-grid">
+        <div class="cart-grid-item">
+            <div class="div">
+                <div class="cart-grid-item-header">
+                    <span class="inside-1">Price</span>
+                    <span class="inside-2">Quantity</span>
+                    <span class="inside-3">Total</span>
+                </div>
+                {% for cart_item in cart_items %}
+                <div class="cart_grid-item-content">
+                    <div class="grid_item_img">
+                        <img src="{{cart_item.product.photo_main.url}}" alt="">
+
+                    </div>
+                    <div class="grid_item_content">
+                        <h2><a href="{{cart_item.product.get_absolute_url}}">{{cart_item.product.title}}</a></h2>
+                        <p>Roasted Whole Beans 250g</p>
+                        <p style="color: #e20613;">Remove</p>
+                    </div>
+                    <div class="grid_item_price">
+                        £ {{cart_item.product.price}}
+                    </div>
+                    <div class="grid_item_quantity">
+                        <div class="quantity">
+                            <div class="quantity-buttons">
+                                <form action="{% url 'carts:remove_from_cart' %}" name="" method="POST">
+                                    {% csrf_token %}
+                                    <input hidden name="product_id" value='{{cart_item.product.id}}'>
+                                    <input hidden name="quantity" value='1'>
+                                    <button class="quantity-button">&lt;</button>
+                                </form>
+                                <div style="margin-top: 3px; font-weight: bolder">{{cart_item.quantity}}</div>
+                                <form action="{% url 'carts:add_to_cart' %}" name="" method="POST">
+                                    {% csrf_token %}
+                                    <input hidden name="product_id" value='{{cart_item.product.id}}'>
+                                    <input hidden name="quantity" value='1'>
+                                    <button class="quantity-button">&gt;</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid_item_total">
+                        £ {{cart_item.line_total}}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="cart_total">Total: {{cart.total}}</div>
+        </div>
+    </div>
+</div>
+{% include 'snippets/footer.html' %}
+
+
+
+
+{% endblock %}

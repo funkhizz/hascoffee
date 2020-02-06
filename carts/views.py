@@ -1,19 +1,52 @@
 from django.shortcuts import render, redirect
-from .models import Cart
+from .models import Cart, CartItem
 from products.models import Product
+from decimal import Decimal
 
 def cart_home(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
-    return render(request, 'carts/home.html', {})
+    cartItems = CartItem.objects.filter(cart=cart_obj.id)
+    context = {
+        'cart_items': cartItems,
+        'cart': cart_obj
+    }
+    return render(request, 'cart_home.html', context)
 
-def cart_update(request):
+def add_to_cart(request):
     product_id = request.POST.get('product_id')
+    quantity = request.POST.get('quantity')
     if product_id is not None:
         try:
             product_obj = Product.objects.get(id=product_id)
         except Product.DoesNotExist:
-            print('product done')
             return redirect("carts:cart")
         cart_obj, new_obj = Cart.objects.new_or_get(request)
-        cart_obj.products.add(product_obj)
+        cart_item, created = CartItem.objects.get_or_create(cart=cart_obj, product=product_obj)
+        cart_item.quantity += int(quantity)
+        line_total = product_obj.price * cart_item.quantity
+        cart_item.line_total = line_total
+        cart_item.save()
     return redirect("carts:cart")
+
+def remove_from_cart(request):
+    product_id = request.POST.get('product_id')
+    quantity = request.POST.get('quantity')
+    if product_id is not None:
+        try:
+            product_obj = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            return redirect("carts:cart")
+        cart_obj, new_obj = Cart.objects.new_or_get(request)
+        cart_item, created = CartItem.objects.get_or_create(cart=cart_obj, product=product_obj)
+        if cart_item.quantity > 1:
+            cart_item.quantity -= int(quantity)
+            line_total = product_obj.price * cart_item.quantity
+            cart_item.line_total = line_total
+            cart_item.save()
+        else:
+            cartitem = CartItem.objects.get(id=cart_item.id)
+            print(cartitem)
+            cartitem.cart = None
+            cartitem.save()
+    return redirect("carts:cart")
+

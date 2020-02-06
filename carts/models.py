@@ -1,7 +1,10 @@
 from django.db import models
 from django.conf import settings
 from products.models import Product
-from django.db.models.signals import m2m_changed
+from django.db.models.signals import m2m_changed, pre_save, post_save
+from django.core.validators import MaxValueValidator, MinValueValidator
+from decimal import Decimal
+
 User = settings.AUTH_USER_MODEL
 
 
@@ -51,3 +54,34 @@ def m2m_changed_cart_receiver(sender, instance, action, *args, **kwargs):
         instance.save()
 
 m2m_changed.connect(m2m_changed_cart_receiver, sender=Cart.products.through)
+
+
+
+
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, null=True, blank=True, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0, validators=[MaxValueValidator(50), MinValueValidator(1)])
+    line_total = models.DecimalField(default=0.00, max_digits=100, decimal_places=2)
+    timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
+    updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+    def __unicode__(self):
+        try:
+            return str(self.cart.id)
+        except:
+            return self.product.title
+
+def cartitem_receiver(sender, instance, *args, **kwargs):
+    cartItem = CartItem.objects.filter(cart=instance.cart.id)
+    total = 0
+    for x in cartItems:
+        total += x.line_total
+
+    instance.cart.total = total
+    instance.cart.save()
+
+
+post_save.connect(cartitem_receiver, sender=CartItem)

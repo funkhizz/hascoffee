@@ -69,9 +69,9 @@
         <div class="product-grid-right">
             <h2 class="product-title-main">{{object_detail.title}}</h2>
             <p class="product-ingridients">{{object_detail.ingridients}}</p>
-            <form action="{% url 'carts:cart_update' %}" method='POST'>
+            <form action="{% url 'carts:add_to_cart' %}" method='POST'>
                 {% csrf_token %}
-                <input name="product_id" value='{{object_detail.id}}'>
+                <input hidden name="product_id" value='{{object_detail.id}}'>
                 <div class="quantity-grid">
                     <div class="grind">
                         <div class="select">
