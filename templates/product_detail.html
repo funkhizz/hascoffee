@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
 
 <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
-<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,7 +16,7 @@
 
 {% include 'snippets/header.html' with headerstyle="grey-header" %}
 
-<nav>
+<nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item">
             <a href="{% url 'home' %}">Home</a>
@@ -30,7 +29,7 @@
 </nav>
 
 
-<div class="product">
+<div class="product-detail">
     <div class="product-main">
         <div class="product-grid-left">
             <!-- Thumbnail gallery -->
@@ -68,7 +67,7 @@
             </div>
         </div>
         <div class="product-grid-right">
-            <h2 class="product-title">{{object_detail.title}}</h2>
+            <h2 class="product-title-main">{{object_detail.title}}</h2>
             <p class="product-ingridients">{{object_detail.ingridients}}</p>
             <form action="">
                 <div class="quantity-grid">
@@ -104,11 +103,32 @@
             </div>
             <div class="product-description">{{object_detail.description}}</div>
             <ul>
-                <li>{{object_detail.country}}</li>
+                <li class="desc-li">{{object_detail.country}}</li>
             </ul>
         </div>
     </div>
   </div>
+
+  <div class="new-section">
+    <div class="product-list-section detail_section">
+    <h2>You might also like!</h2>
+
+      {% for random in random_products %}
+      <div class="product">
+        <div class="new-product">
+          <a href="#">
+            <div class="product-pic">
+              <img src="{{ random.photo_main.url }}" alt="" >
+            </div>
+            <span class="product-title">{{ random.title}}</span>
+            <p class="product-content">{{ random.ingridients}}</p>
+            <p class="product-price">£{{random.price}}</p>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
 
 
 

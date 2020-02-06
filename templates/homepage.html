@@ -81,10 +81,10 @@
       {% for obj in object_list %}
       <div class="product">
         <div class="new-product">
-          <a href="#">
-            <span class="product-pic">
+          <a href="{{ obj.get_absolute_url }}">
+            <div class="product-pic">
               <img src="{{ obj.photo_main.url }}" alt="" >
-            </span>
+            </div>
             <span class="product-title">{{ obj.title}}</span>
             <p class="product-content">{{ obj.ingridients}}</p>
             <p class="product-price">£{{obj.price}}</p>

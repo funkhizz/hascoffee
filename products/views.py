@@ -7,10 +7,12 @@ from .quantity_choices import quantity_choices, grind_choices
 
 def product_detail(request, slug):
     instance = get_object_or_404(Product, slug=slug)
+    randomquery = [Product.objects.random() for i in range(6)]
     context = {
         'object_detail': instance,
         'quantity_choices': quantity_choices,
-        'grind_choices': grind_choices
+        'grind_choices': grind_choices,
+        'random_products': randomquery
     }
     return render(request, "product_detail.html", context)
 
