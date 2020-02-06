@@ -116,7 +116,7 @@
       {% for random in random_products %}
       <div class="product">
         <div class="new-product">
-          <a href="#">
+          <a href="{{random.get_absolute_url}}">
             <div class="product-pic">
               <img src="{{ random.photo_main.url }}" alt="" >
             </div>
