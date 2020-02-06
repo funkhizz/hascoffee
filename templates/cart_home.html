@@ -35,7 +35,14 @@
                     <div class="grid_item_content">
                         <h2><a href="{{cart_item.product.get_absolute_url}}">{{cart_item.product.title}}</a></h2>
                         <p>Roasted Whole Beans 250g</p>
-                        <p style="color: #e20613;">Remove</p>
+                        <p style="color: #e20613;">
+                            <form action="{% url 'carts:remove_from_cart' %}" name="" method="POST">
+                                {% csrf_token %}
+                                <input hidden name="product_id" value='{{cart_item.product.id}}'>
+                                <input hidden name="quantity" value='0'>
+                                <button class="quantity-button">Remove</button>
+                            </form>
+                        </p>
                     </div>
                     <div class="grid_item_price">
                         £ {{cart_item.product.price}}

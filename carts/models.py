@@ -74,14 +74,14 @@ class CartItem(models.Model):
         except:
             return self.product.title
 
-def cartitem_receiver(sender, instance, *args, **kwargs):
-    cartItem = CartItem.objects.filter(cart=instance.cart.id)
-    total = 0
-    for x in cartItems:
-        total += x.line_total
+# def cartitem_receiver(sender, instance, *args, **kwargs):
+#     cartItem = CartItem.objects.filter(cart=instance.cart.id)
+#     total = 0
+#     for x in cartItem:
+#         total += x.line_total
 
-    instance.cart.total = total
-    instance.cart.save()
+#     instance.cart.total = total
+#     instance.cart.save()
 
 
-post_save.connect(cartitem_receiver, sender=CartItem)
+# post_save.connect(cartitem_receiver, sender=CartItem)

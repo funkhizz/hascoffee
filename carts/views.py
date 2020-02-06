@@ -25,7 +25,9 @@ def add_to_cart(request):
         cart_item.quantity += int(quantity)
         line_total = product_obj.price * cart_item.quantity
         cart_item.line_total = line_total
+        cart_obj.total += product_obj.price * int(quantity)
         cart_item.save()
+        cart_obj.save()
     return redirect("carts:cart")
 
 def remove_from_cart(request):
@@ -38,15 +40,25 @@ def remove_from_cart(request):
             return redirect("carts:cart")
         cart_obj, new_obj = Cart.objects.new_or_get(request)
         cart_item, created = CartItem.objects.get_or_create(cart=cart_obj, product=product_obj)
-        if cart_item.quantity > 1:
-            cart_item.quantity -= int(quantity)
-            line_total = product_obj.price * cart_item.quantity
-            cart_item.line_total = line_total
-            cart_item.save()
-        else:
+        if int(quantity) == 0:
             cartitem = CartItem.objects.get(id=cart_item.id)
-            print(cartitem)
+            cart_obj.total -= cartitem.line_total
             cartitem.cart = None
             cartitem.save()
+            cart_obj.save()
+        else:
+            if cart_item.quantity > 1:
+                cart_item.quantity -= int(quantity)
+                line_total = product_obj.price * cart_item.quantity
+                cart_item.line_total = line_total
+                cart_obj.total -= product_obj.price * int(quantity)
+                cart_item.save()
+                cart_obj.save()
+            else:
+                cartitem = CartItem.objects.get(id=cart_item.id)
+                cartitem.cart = None
+                cart_obj.total -= product_obj.price * int(quantity)
+                cart_obj.save()
+                cartitem.save()
     return redirect("carts:cart")
 
