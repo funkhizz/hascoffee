@@ -69,12 +69,14 @@
         <div class="product-grid-right">
             <h2 class="product-title-main">{{object_detail.title}}</h2>
             <p class="product-ingridients">{{object_detail.ingridients}}</p>
-            <form action="">
+            <form action="{% url 'carts:cart_update' %}" method='POST'>
+                {% csrf_token %}
+                <input name="product_id" value='{{object_detail.id}}'>
                 <div class="quantity-grid">
                     <div class="grind">
                         <div class="select">
                             <label class="select-label">Grind or green</label>
-                            <select name="country" class="select-form select-width">
+                            <select name="grind" class="select-form select-width">
                                 {% for key, values in grind_choices.items %}
                                 <option value="{{ values }}">{{ values }}</option>
                                 {% endfor %}
@@ -84,7 +86,7 @@
                     <div class="quantity">
                         <div class="select">
                             <label class="select-label">Quantity</label>
-                            <select name="country" class="select-form select-width">
+                            <select name="quantity" class="select-form select-width">
                                 {% for key, values in quantity_choices.items %}
                                 <option value="{{ values }}">{{ values }}</option>
                                 {% endfor %}
