@@ -105,3 +105,21 @@
     cursor: pointer;
 }
 
+.cart_total {
+    font-size: 1.6rem;
+    display: grid;
+    justify-items: end;
+    margin-bottom: 3rem;
+}
+
+.checkout {
+    margin-bottom: 4rem;
+    display: grid;
+    justify-content: end;
+    color: white;
+}
+
+.btn-checkout:hover {
+    color: white;
+    text-decoration: none;
+}
