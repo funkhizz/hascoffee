@@ -1,0 +1,88 @@
+.dashboard {
+    margin: 0 30rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 2.5rem;
+}
+
+.buy-button {
+    border: none;
+    font-size: 1.5rem;
+    padding: 1.5rem;
+    color: #e83b45;
+    border-radius: 3px;
+    display: block;
+    background-color: white;
+    text-decoration: none;
+    width: 20rem;
+    border: 1px solid #e83b45;
+    cursor: pointer;
+    height: 6rem;
+    margin-right: 1rem;
+}
+
+.buy-button:hover {
+    color: #e83b45;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.btn-login {
+    cursor: pointer;
+    width: 10rem !important;
+}
+
+.login-form-left {
+    grid-column: 1 / 3;
+}
+
+.login-form-right {
+    height: 26rem;
+}
+
+.login-form-right p {
+    font-size: 1.5rem;
+    color: #919191;
+}
+
+.login-form-left input {
+    width: 100%;
+    height: 4rem;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+.login-form-title {
+    font-size: 2rem;
+    color: #e83b45;
+    font-weight: bolder;
+    margin-bottom: 2.5rem;
+
+}
+
+.buttons {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 3rem;
+}
+
+.adresses {
+    color: #e83b45;
+    font-size: 1.5rem;
+}
+
+.adresses:hover {
+    opacity: 0.8;
+    text-decoration: none;
+    color: #e83b45;
+}
+
+h3 {
+    font-size: 3rem;
+    color: #e83b45;
+    font-weight: bolder;
+}
+
+
+

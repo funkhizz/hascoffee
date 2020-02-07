@@ -1,0 +1,148 @@
+.products {
+    margin: 0 30rem;
+    border-top: 1px solid #dddddd;
+}
+
+
+
+
+.pre-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 30rem;
+
+}
+
+
+
+.section-sort {
+    font-size: 2rem;
+    color: #6d6d6d;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+
+select {
+    background-color: white;
+    font-size: 1.4rem;
+    padding: 1rem 0;
+    border: 1px solid #dddddd;
+    color: #777777;
+    border-radius: 4px;
+    background-image: url('../icons/down-arrow.svg');
+    background-size: 20px 30px;
+    background-repeat: no-repeat;
+    background-position-x: 95%;
+    background-position-y: 32%;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance: none;
+    width: 14rem;
+}
+
+.sort-by {
+    margin-right: 2rem;
+}
+
+.product-list-section.products-row-gap {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(22rem, min-content));
+    margin-bottom: 3rem;
+}
+
+.product-title {
+    font-size: 1.4rem;
+    font-weight: bolder;
+    line-height: 1.6rem !important;
+    margin-top: 1rem;
+}
+
+.product-item {
+    width: 20rem;
+}
+
+.paginator {
+    display: grid;
+    justify-content: center;
+    margin-bottom: 8rem;
+    border: none;
+}
+
+.paginator li a{
+    border: none;
+    font-size: 2rem;
+    color: #dddddd;
+}
+
+.pagination > .active > a
+{
+    color: #e20613 !important;
+    background-color: white !Important;
+}
+
+.pagination > li > a
+{
+    background-color: white;
+    color: #777777;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #777777;
+    background-color: white;
+    border-color: #ddd;
+}
+
+.product-list-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 auto;
+    grid-gap: 2.6rem;
+}
+
+.product {
+    cursor: pointer;
+}
+
+.product a {
+    font-size: 2rem;
+    color: black;
+    text-decoration: none;
+}
+
+.product-title:hover {
+    color: #e20613;
+}
+
+.product-pic {
+    height: 20rem;
+    width: 100%;
+}
+
+.product-item:hover .product-title {
+    color: red;
+}
+
+.product-item:hover img {
+    opacity: .6;
+}
+
+
+.product-pic img{
+    width: 100%;
+    height: 100%;
+}
+
+.product-content {
+    font-size: 1.5rem;
+}
+
+.product-price {
+    font-size: 2rem;
+}

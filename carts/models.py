@@ -55,11 +55,6 @@ def m2m_changed_cart_receiver(sender, instance, action, *args, **kwargs):
 
 m2m_changed.connect(m2m_changed_cart_receiver, sender=Cart.products.through)
 
-
-
-
-
-
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, null=True, blank=True, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)

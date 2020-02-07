@@ -15,7 +15,7 @@
 
 {% include 'snippets/header.html' with headerstyle="grey-header" %}
 
-
+{% if cart_items %}
 <div class="cart_home">
     <div class="section-name">Your Cart</div>
     <div class="cart-grid">
@@ -84,6 +84,18 @@
         </div>
     </div>
 </div>
+{% else %}
+<div class="cart_home">
+
+Your Cart
+
+Your cart is currently empty.
+
+Continue browsing here.
+
+</div>
+{% endif %}
+
 {% include 'snippets/footer.html' %}
 
 
