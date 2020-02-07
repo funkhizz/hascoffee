@@ -6,38 +6,97 @@
 {% endblock %}
 
 {% block content %}
-<div class="checkout-page">
-    <div class="checkout-left">
-        <div class="checkout-left-title">
-            Hascoffee
-        </div>
-        <form action="">
-        <div class="checkout-left-title-contact-info">
-            <div class="contact-info">Contact information</div>
-            <div class="contact-login">
-                <p>
-                    <span>Already have an account? <a href="">Log in</a></span>
-                </p>
 
-                <span><input type="checkbox" name="" id=""> Keep me up to date on news and exclusive offers</span>
+<div class="checkout-page">
+    <div class="checkout-page-left">
+        <div class="shipping-content">
+            <div class="checkout-left-title">
+                Hascoffee
             </div>
+            <form action="">
+            <div class="checkout-left-title-contact-info">
+                <div class="contact-info">Contact information</div>
+                <div class="contact-login">
+                    <p>
+                        <span>Already have an account? <a href="">Log in</a></span>
+                    </p>
+
+                </div>
+            </div>
+
+            <div class="notify">
+                <input type="checkbox" name="" id="" style="margin-right: 1rem;"><span>Keep me up to date on news and exclusive offers</span>
+            </div>
+
+            <div class="checkout-shipping">
+                <h2 class="shipping-title">
+                    Shipping address
+                </h2>
+                <div class="input-group">
+                    <input class="form-input" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>First name</label>
+                  </div>
+                  <div class="input-group">
+                    <input class="form-input" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Last name</label>
+                  </div>
+                  <div class="input-group full-line">
+                    <input class="form-input" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Company</label>
+                  </div>
+                  <div class="input-group full-line">
+                    <input class="form-input" type="password" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Address</label>
+                  </div>
+                  <div class="input-group full-line">
+                    <input class="form-input" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Apartment, suite, etc.(optional)</label>
+                  </div>
+                  <div class="input-group full-line">
+                    <input class="form-input" type="password" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>City</label>
+                  </div>
+                  <div class="input-group">
+                    <input class="form-input" type="text" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>County/region</label>
+                  </div>
+                  <div class="input-group">
+                    <input class="form-input" type="password" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Postcode</label>
+                  </div>
+                  <div class="input-group full-line">
+                    <input class="form-input" type="password" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Phone(optional)</label>
+                  </div>
+            </div>
+            <div class="shopping-footer">
+                
+                <a href="{% url 'carts:cart' %}" class="return-link">&lt; Return to cart</a>
+                <button class="news-button">
+                    Continue to shopping
+                </button>
+            </div>
+            </form>
         </div>
-        <div class="checkout-shipping">
-            <h2 class="shipping-title">
-                Shipping address
-            </h2>
-            <input type="text" value='First name' required>
-            <input type="text" value='Last name' required>
-            <input type="text" value='Company (optional)'>
-            <input type="text" value='Adress' required>
-            <input type="text" value='Apartment, suite, etc. (optional)'>
-            <input type="text" value='City' required>
-            <input type="text" value='Country/region' required>
-            <input type="text" value='Postcode' required>
-            <input type="text" value='Phone (optional)'>
-        </div>
-        </form>
     </div>
-    <div class="checkout-right">Right</div>
+    <div class="checkout-page-right">1</div>
 </div>
 {% endblock %}
