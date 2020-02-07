@@ -63,4 +63,11 @@ def remove_from_cart(request):
     return redirect("carts:cart")
 
 def checkout_home(request):
-    return render(request, 'checkout.html', {})
+    cart_obj, new_obj = Cart.objects.new_or_get(request)
+    cartItems = CartItem.objects.filter(cart=cart_obj.id)
+    context = {
+        'cart_items': cartItems,
+        'cart': cart_obj
+
+    }
+    return render(request, 'checkout.html', context)
