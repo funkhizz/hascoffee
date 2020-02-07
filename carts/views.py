@@ -62,3 +62,5 @@ def remove_from_cart(request):
                 cartitem.save()
     return redirect("carts:cart")
 
+def checkout_home(request):
+    return render(request, 'checkout.html', {})

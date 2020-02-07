@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block base_head%}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="checkout-page">
+    <div class="checkout-left">
+        <div class="checkout-left-title">
+            Hascoffee
+        </div>
+        <form action="">
+        <div class="checkout-left-title-contact-info">
+            <div class="contact-info">Contact information</div>
+            <div class="contact-login">
+                <p>
+                    <span>Already have an account? <a href="">Log in</a></span>
+                </p>
+
+                <span><input type="checkbox" name="" id=""> Keep me up to date on news and exclusive offers</span>
+            </div>
+        </div>
+        <div class="checkout-shipping">
+            <h2 class="shipping-title">
+                Shipping address
+            </h2>
+            <input type="text" value='First name' required>
+            <input type="text" value='Last name' required>
+            <input type="text" value='Company (optional)'>
+            <input type="text" value='Adress' required>
+            <input type="text" value='Apartment, suite, etc. (optional)'>
+            <input type="text" value='City' required>
+            <input type="text" value='Country/region' required>
+            <input type="text" value='Postcode' required>
+            <input type="text" value='Phone (optional)'>
+        </div>
+        </form>
+    </div>
+    <div class="checkout-right">Right</div>
+</div>
+{% endblock %}
