@@ -48,11 +48,10 @@ dl, ol, ul {
     grid-column: 5 / 9;
 
     display: grid;
-    grid-template-columns: repeat(3, min-content);
-    justify-content: end;
+    grid-template-columns: max-content 10rem 1fr;
+    justify-self: end;
     align-items: center;
-
-    grid-gap: 4rem;
+    grid-column-gap: 2rem;
 }
 
 

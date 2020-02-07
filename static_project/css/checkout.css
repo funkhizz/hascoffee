@@ -1,15 +1,16 @@
 .checkout-page {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    height: 100vh;
 }
 
 .checkout-page-left {
     padding: 10rem 5rem 0 0;
+
 }
 
 .checkout-page-right {
     background-color: #e20613;
-    height: 100vh;
 }
 
 .shipping-content {
@@ -153,8 +154,38 @@
   border-bottom: 1px solid #d9d9d9;
   padding: 2.4rem 0;
   margin-top: 4rem;
-
 }
+
+.user-logged {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.user-logout {
+  color: #e83b45;
+  font-weight: bolder;
+}
+
+.email-form {
+  margin: 1.5rem 0;
+}
+
+.user-logout:hover {
+  color: #e83b45;
+  text-decoration: none;
+}
+
+.user-img {
+  width: 100%;
+}
+
+.user-logged-content {
+  padding-left: 2rem;
+  font-size: 1.5rem;
+}
+
 
 /* floating input */
 .input-group {

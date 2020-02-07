@@ -122,3 +122,12 @@
     color: white;
     text-decoration: none;
 }
+
+.here-link {
+    color: #e20613;
+}
+
+.here-link:hover {
+    color: #e20613;
+    text-decoration: none;
+}

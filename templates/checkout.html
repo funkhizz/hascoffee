@@ -20,9 +20,26 @@
                     <p>
                         <span>Already have an account? <a class="login_link" href="{% url 'login' %}">Log in</a></span>
                     </p>
-
                 </div>
             </div>
+            {% if request.user.is_authenticated %}
+            <div class="user-logged">
+              <div class="user-logged-img">
+                <img class="user-img" src="{% static 'img/user.png' %}" alt="" srcset="">
+              </div>
+              <div class="user-logged-content">
+                {{request.user.first_name}} {{request.user.last_name}} ({{request.user.email}})
+                <p><a class="user-logout" href="{% url 'logout' %}">Logout</a></p>
+              </div>
+            </div>
+            {% else %}
+            <div class="input-group full-line email-form">
+              <input class="form-input" type="text" required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label>Email</label>
+            </div>
+            {% endif %}
 
             <div class="notify">
                 <input type="checkbox" name="" id="" style="margin-right: 1rem;"><span style="font-size: 1.5rem;">Keep me up to date on news and exclusive offers</span>

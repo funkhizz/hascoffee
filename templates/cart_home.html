@@ -86,12 +86,12 @@
 </div>
 {% else %}
 <div class="cart_home">
+<div class="empty-cart">
+    <h2 style="color: #e20613;font-size: 3rem;">Your Cart</h2>
+    <p style="color: #534b4b; font-size: 2rem">Your cart is currently empty.</p>
+    <p style="color: #534b4b; font-size: 2rem">Continue browsing <a class='here-link' href="{% url 'product_list' %}">here</a>.</p>
+</div>
 
-Your Cart
-
-Your cart is currently empty.
-
-Continue browsing here.
 
 </div>
 {% endif %}

@@ -1,3 +1,13 @@
+{% load static %}
+{% url 'home' as home_url %}
+{% url 'product_list' as products_url %}
+{% url 'contact' as contact_url %}
+{% url 'login' as login_url %}
+{% url 'carts:cart' as cart_url %}
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></head>
+
 <div class="homepage-header back-grey">
     <ul class="header-nav">
       <li class="header-item">Wholesale</li>
@@ -8,7 +18,13 @@
     </ul>
     <div class="header-right-block">
       <div class="right-block-accaunt"><a href="{% url 'login' %}">Account</a></div>
-      <div class="right-block-cart">Cart</div>
+      <div class="right-block-cart">
+        <a href="{{cart_url}}">
+          <span>
+            <i class="fa fa-shopping-cart" style='color: #8a8a8a;'></i>Cart{% if request.session.cart_items %}: {{ request.session.cart_items }} {% else %} {% endif %}
+          </span>
+        </a>
+    </div>
       <div class="right-block-form">
         <form action="">
             <input type="text">
@@ -17,9 +33,11 @@
     </div>
   </div>
   <div class="homepage-header-table">
-    <div class="title title-grey">Hascoffee</div>
+    <div class="title title-grey">
+      <a href="{{home_url}}">Hascoffee</a>
+      </div>
     <ul class="nav-link-main">
-      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Coffee</a></li>
+      <li class="nav-link nav-link-grey {% if request.path == products_url %} active-header {% endif %}"><a href="{{ products_url }}">Coffee</a></li>
       <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Subscriptions</a></li>
       <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Equipment</a></li>
       <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Merchandise</a></li>
@@ -27,3 +45,4 @@
     </ul>
   </div>
 </div>
+

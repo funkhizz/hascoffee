@@ -27,13 +27,15 @@
 .header-right-block {
     font-size: 1.4rem;
     grid-column: 5 / 9;
-
     display: grid;
-    grid-template-columns: repeat(3, min-content);
-    justify-content: end;
+    grid-template-columns: max-content 10rem 1fr;
+    justify-self: end;
     align-items: center;
+    grid-column-gap: 2rem;
+}
 
-    grid-gap: 4rem;
+.fa-shopping-cart {
+    border: none;
 }
 
 
@@ -99,8 +101,13 @@
     color: #8a8a8a;
 }
 
-.title-grey {
+.title-grey a{
     color: #e20613;
+}
+
+.title-grey a:hover{
+    color: #e20613;
+    text-decoration: none;
 }
 
 .link-grey {
@@ -126,6 +133,11 @@ i {
     border-width: 0 3px 3px 0;
     display: inline-block;
     padding: 3px;
+}
+
+.active-header a {
+    color: #e20613;
+    border-bottom: 2px solid #e20613;
 }
 
 

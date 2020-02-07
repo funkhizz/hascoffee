@@ -8,6 +8,8 @@
 {% endblock %}
 
 {% block content %}
+{% url 'carts:cart' as cart_url %}
+
 <div class="homapage">
   <!-- Carousel -->
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -47,7 +49,13 @@
     </ul>
     <div class="header-right-block">
       <div class="right-block-accaunt"><a href="{% url 'login' %}">Account</a></div>
-      <div class="right-block-cart">Cart</div>
+      <div class="right-block-cart">
+        <a href="{{cart_url}}">
+          <span>
+            <i class="fa fa-shopping-cart" style='color: white;'></i>Cart{% if request.session.cart_items %}: {{ request.session.cart_items }} {% else %} {% endif %}
+          </span>
+        </a>
+    </div>
       <div class="right-block-form">
         <form action="">
             <input type="text">
