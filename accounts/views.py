@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import get_user_model
+from django.utils.http import is_safe_url
 User = get_user_model()
 
 # from contacts.models import Contact
@@ -45,6 +46,9 @@ def register(request):
 
 def login(request):
     context = {}
+    next_ = request.GET.get('next')
+    next_post = request.POST.get('next')
+    redirect_path = next_ or next_post or None
     if request.user.is_authenticated==False:
         if request.method == "POST":
             # Register user
@@ -56,10 +60,13 @@ def login(request):
             }
             if user is not None:
                 auth.login(request, user)
+                if is_safe_url(redirect_path, request.get_host()):
+                    return redirect(redirect_path)
+                else:
+                    return redirect('dashboard')
             else:
                 messages.error(request, 'Invalid credentials')
                 return render(request, 'login.html', context)
-
         else:
             return render(request, 'login.html', {})
     return redirect('dashboard')
