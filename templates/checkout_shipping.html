@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block base_head%}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="checkout-page">
+    <div class="checkout-page-left">
+        <div class="shipping-content">
+            <div class="checkout-left-title">
+                Hascoffee
+            </div>
+
+            <div class="shopping-footer">
+                <a href="{% url 'carts:cart' %}" class="return-link">&lt; Return to cart</a>
+                <button class="news-button">
+                    Continue to shopping
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="checkout-page-right">
+      <div class="checkout-page-wrap">
+        <div class="checkout-products">
+          {% for cart_item in cart_items %}
+          <div class="checkout-single-product">
+              <div class="product-img">
+                <img src="{{cart_item.product.photo_main.url}}" alt="" srcset="">
+                <div class="img-number"><span class="img-span">{{cart_item.quantity}}</span></div>
+              </div>
+              <div class="product-title">
+                {{cart_item.product.title}}
+              </div>
+              <div class="product-price">
+                £{{cart_item.line_total}}
+              </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="total-sum">
+          <div class="checkout-total">
+            <span style="color: white; font-size: 1.5rem">Subtotal:</span>
+            <span style="color: white; font-size: 1.5rem">£{{cart.total}}</span>
+          </div>
+          <div class="checkout-total">
+            <span style="color: white; font-size: 1.5rem">Shipping:</span>
+            <span style="color: white; font-size: 1.5rem">£{{order.shipping_total}}</span>
+          </div>
+          <div class="checkout-total">
+            <span style="color: white; font-size: 2rem">Total:</span>
+            <span style="color: white; font-size: 2.5rem">£{{order.total}}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+{% endblock %}

@@ -5,6 +5,10 @@ from decimal import Decimal
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import get_user_model
 from orders.models import Order
+from billing.models import BillingProfile
+from accounts.models import GuestEmail
+from django.contrib import messages
+
 User = get_user_model()
 
 def cart_home(request):
@@ -84,8 +88,6 @@ def remove_from_cart(request):
     return redirect("carts:cart")
 
 def checkout_home(request):
-    request.session['checkout_visit'] = False
-
     cart_obj, cart_created = Cart.objects.new_or_get(request)
     order_obj = None
     if cart_created and CartItem.objects.filter(cart=cart_obj.id).count() == 0:
@@ -93,15 +95,41 @@ def checkout_home(request):
     else:
         order_obj, new_order_obj = Order.objects.get_or_create(cart=cart_obj)
     cartItems = CartItem.objects.filter(cart=cart_obj.id)
-    user = request.user
-    billing_profile = None
-    if user.is_authenticated:
-        billing_profile = None
     context = {
         'cart_items': cartItems,
         'cart': cart_obj,
         'order': order_obj,
+    }
+    return render(request, 'checkout.html', context)
+
+def checkout_shipping(request):
+    context = {}
+    cart_obj, cart_created = Cart.objects.new_or_get(request)
+    user = request.user
+    billing_profile = None
+    if user.is_authenticated:
+        email = request.POST.get('email')
+        billing_profile = billing_profile_created = BillingProfile.objects.get_or_create(user=user, email=user.email)
+    else:
+        guest_email = request.POST.get('guest_email')
+        user_qs = User.objects.filter(email=guest_email)
+        if user_qs.exists():
+            messages.error(request, 'Sorry! But this email is already registered')
+            return render(request, 'checkout.html', context)
+        guest_email_created = GuestEmail.objects.create(email=guest_email)
+        guest_email_obj = GuestEmail.objects.get(id=guest_email_created.id)
+        billing_profile = billing_guest_profile_created = BillingProfile.objects.get_or_create(email=guest_email_obj)
+
+    order_qs = Order.objects.filter(cart=cart_obj)
+    if billing_profile is not None:
+        if order_qs.exists():
+            order_qs.update(active=False)
+        else:
+            order_obj, new_order_obj = Order.objects.create(cart=cart_obj, billing_profile=billing_profile)
+
+
+
+    context = {
         'billing_profile': billing_profile
     }
-    request.session['checkout_visit'] = True
-    return render(request, 'checkout.html', context)
+    return render(request, 'checkout_shipping.html', context)
