@@ -4,6 +4,7 @@ from products.models import Product
 from decimal import Decimal
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import get_user_model
+from orders.models import Order
 User = get_user_model()
 
 def cart_home(request):
@@ -85,12 +86,16 @@ def remove_from_cart(request):
     return redirect("carts:cart")
 
 def checkout_home(request):
-
-    cart_obj, new_obj = Cart.objects.new_or_get(request)
+    cart_obj, cart_created = Cart.objects.new_or_get(request)
+    order_obj = None
+    if cart_created and CartItem.objects.filter(cart=cart_obj.id).count() == 0:
+        return redirect("carts:cart")
+    else:
+        order_obj, new_order_obj = Order.objects.get_or_create(cart=cart_obj)
     cartItems = CartItem.objects.filter(cart=cart_obj.id)
     context = {
         'cart_items': cartItems,
         'cart': cart_obj,
-
+        'order': order_obj
     }
     return render(request, 'checkout.html', context)

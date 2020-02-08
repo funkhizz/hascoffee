@@ -150,10 +150,15 @@
 .checkout-total {
   display: flex;
   justify-content: space-between;
+
+}
+
+.total-sum {
+  margin-top: 2rem;
+
+  padding: 1rem 0;
   border-top: 1px solid #d9d9d9;
   border-bottom: 1px solid #d9d9d9;
-  padding: 2.4rem 0;
-  margin-top: 4rem;
 }
 
 .user-logged {
