@@ -92,8 +92,6 @@ def checkout_home(request):
     order_obj = None
     if cart_created and CartItem.objects.filter(cart=cart_obj.id).count() == 0:
         return redirect("carts:cart")
-    else:
-        order_obj, new_order_obj = Order.objects.get_or_create(cart=cart_obj)
     cartItems = CartItem.objects.filter(cart=cart_obj.id)
     context = {
         'cart_items': cartItems,
@@ -103,33 +101,27 @@ def checkout_home(request):
     return render(request, 'checkout.html', context)
 
 def checkout_shipping(request):
-    context = {}
+    order_obj = None
     cart_obj, cart_created = Cart.objects.new_or_get(request)
+    email = request.POST.get('email')
+
     user = request.user
     billing_profile = None
     if user.is_authenticated:
-        email = request.POST.get('email')
-        billing_profile = billing_profile_created = BillingProfile.objects.get_or_create(user=user, email=user.email)
+        billing_profile, billing_profile_created = BillingProfile.objects.get_or_create(user=user, email=user.email)
     else:
-        guest_email = request.POST.get('guest_email')
-        user_qs = User.objects.filter(email=guest_email)
-        if user_qs.exists():
-            messages.error(request, 'Sorry! But this email is already registered')
-            return render(request, 'checkout.html', context)
-        guest_email_created = GuestEmail.objects.create(email=guest_email)
-        guest_email_obj = GuestEmail.objects.get(id=guest_email_created.id)
-        billing_profile = billing_guest_profile_created = BillingProfile.objects.get_or_create(email=guest_email_obj)
+        guest_email = GuestEmail.objects.create(email=email)
+        guest_email_obj = GuestEmail.objects.get(id=guest_email.id)
+        billing_profile = BillingProfile.objects.create(email=guest_email_obj)
 
-    order_qs = Order.objects.filter(cart=cart_obj)
+    order_qs = Order.objects.filter(cart=cart_obj, active=True)
     if billing_profile is not None:
         if order_qs.exists():
             order_qs.update(active=False)
         else:
-            order_obj, new_order_obj = Order.objects.create(cart=cart_obj, billing_profile=billing_profile)
-
-
-
+            order_obj = Order.objects.create(billing_profile=billing_profile, cart=cart_obj)
     context = {
-        'billing_profile': billing_profile
+        'billing_profile': billing_profile,
+        'object': order_obj
     }
     return render(request, 'checkout_shipping.html', context)

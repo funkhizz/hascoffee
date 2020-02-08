@@ -28,7 +28,6 @@
               </div>
               {% endif %}
             </div>
-            {% include 'snippets/alert.html' %}
             {% if request.user.is_authenticated %}
             <div class="user-logged">
               <div class="user-logged-img">
@@ -42,7 +41,7 @@
             </div>
             {% else %}
             <div class="input-group full-line email-form">
-              <input class="form-input" name="guest_email" type="text" required>
+              <input class="form-input" name="email" type="text" required>
               <span class="highlight"></span>
               <span class="bar"></span>
               <label>Email</label>
