@@ -10,7 +10,6 @@ User = get_user_model()
 def register(request):
     context = {}
     if request.method == "POST":
-        print('POST')
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         password = request.POST['password']
@@ -72,7 +71,22 @@ def login(request):
     return redirect('dashboard')
 
 def logout(request):
+    next_ = request.GET.get('next')
+    next_post = request.POST.get('next')
+    redirect_path = next_ or next_post or None
+    if is_safe_url(redirect_path, request.get_host()):
+        cart_items = request.session.get('cart_items')
+        cart_id = request.session.get('cart_id')
+        auth.logout(request)
+        request.session['cart_items'] = cart_items
+        request.session['cart_id'] = cart_id
+
+        return redirect(redirect_path)
+    cart_items = request.session.get('cart_items')
+    cart_id = request.session.get('cart_id')
     auth.logout(request)
+    request.session['cart_items'] = cart_items
+    request.session['cart_id'] = cart_id
     return redirect('login')
 
 def dashboard(request):

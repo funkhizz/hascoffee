@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block content %}
-
+<form id="logoutform" action="{% url 'logout' %}" method="POST">
+  {% csrf_token %}
+</form>
 <div class="checkout-page">
     <div class="checkout-page-left">
         <div class="shipping-content">
@@ -16,11 +18,14 @@
             <form action="">
             <div class="checkout-left-title-contact-info">
                 <div class="contact-info">Contact information</div>
+                {% if request.user.is_authenticated %}
+                {% else %}
                 <div class="contact-login">
-                    <p>
-                        <span>Already have an account? <a class="login_link" href="{% url 'login' %}">Log in</a></span>
-                    </p>
-                </div>
+                  <p>
+                      <span>Already have an account? <a class="login_link" href="{% url 'login' %}">Log in</a></span>
+                  </p>
+              </div>
+              {% endif %}
             </div>
             {% if request.user.is_authenticated %}
             <div class="user-logged">
@@ -29,7 +34,8 @@
               </div>
               <div class="user-logged-content">
                 {{request.user.first_name}} {{request.user.last_name}} ({{request.user.email}})
-                <p><a class="user-logout" href="{% url 'logout' %}">Logout</a></p>
+                      <input type="hidden" name='next' value='{% url "carts:checkout_home" %}' form="logoutform">
+                      <button class="checkout-logout-button" form="logoutform">Logout</button>
               </div>
             </div>
             {% else %}
@@ -105,7 +111,6 @@
                   </div>
             </div>
             <div class="shopping-footer">
-                
                 <a href="{% url 'carts:cart' %}" class="return-link">&lt; Return to cart</a>
                 <button class="news-button">
                     Continue to shopping
@@ -122,7 +127,6 @@
               <div class="product-img">
                 <img src="{{cart_item.product.photo_main.url}}" alt="" srcset="">
                 <div class="img-number"><span class="img-span">{{cart_item.quantity}}</span></div>
-              
               </div>
               <div class="product-title">
                 {{cart_item.product.title}}
