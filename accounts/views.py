@@ -56,18 +56,14 @@ def login(request):
                 auth.login(request, user)
                 if is_safe_url(redirect_path, request.get_host()):
                     return redirect(redirect_path)
-                else:
-                    return redirect('dashboard')
             else:
                 messages.error(request, 'Invalid credentials')
                 return redirect('login')
-        return render(request, 'login.html', {})
     return redirect('dashboard')
 
 def logout(request):
     next_ = request.GET.get('next')
     next_post = request.POST.get('next')
-    print(next_, next_post)
     redirect_path = next_ or next_post or None
     if is_safe_url(redirect_path, request.get_host()):
         auth.logout(request)

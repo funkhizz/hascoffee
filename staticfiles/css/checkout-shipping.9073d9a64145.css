@@ -1,0 +1,23 @@
+.shipping-table-wrap {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    padding: 1rem;
+    margin-bottom: 3rem;
+}
+.shipping-contact {
+    display: grid;
+    grid-template-columns: max-content 1fr min-content;
+    grid-gap: 1rem;
+    margin-top: 1rem;
+
+}
+
+.ship-table-link {
+    color: #e83f49;
+}
+
+.ship-table-link:hover {
+    color: #e83f49;
+    text-decoration: none;
+}

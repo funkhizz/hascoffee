@@ -35,7 +35,7 @@ select {
     border: 1px solid #dddddd;
     color: #777777;
     border-radius: 4px;
-    background-image: url('../icons/down-arrow.svg');
+    background-image: url("../icons/down-arrow.8d9c95649c2d.svg");
     background-size: 20px 30px;
     background-repeat: no-repeat;
     background-position-x: 95%;
