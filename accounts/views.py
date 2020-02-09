@@ -44,6 +44,9 @@ def register(request):
         return render(request, 'register.html', context)
 
 def login(request):
+    context = {
+    "account": {"email": None}
+    }
     next_ = request.GET.get('next')
     next_post = request.POST.get('next')
     redirect_path = next_ or next_post or None
