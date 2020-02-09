@@ -32,17 +32,16 @@
       </div>
     </div>
   </div>
-  <div class="homepage-header-table">
-    <div class="title title-grey">
-      <a href="{{home_url}}">Hascoffee</a>
-      </div>
-    <ul class="nav-link-main">
-      <li class="nav-link nav-link-grey {% if request.path == products_url %} active-header {% endif %}"><a href="{{ products_url }}">Coffee</a></li>
-      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Subscriptions</a></li>
-      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Equipment</a></li>
-      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Merchandise</a></li>
-      <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Other drinks</a></li>
-    </ul>
-  </div>
+<div class="homepage-header-table">
+  <div class="title title-grey">
+    <a href="{{home_url}}">Hascoffee</a>
+    </div>
+  <ul class="nav-link-main">
+    <li class="nav-link nav-link-grey {% if request.path == products_url %} active-header {% endif %}"><a href="{{ products_url }}">Coffee</a></li>
+    <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Subscriptions</a></li>
+    <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Equipment</a></li>
+    <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Merchandise</a></li>
+    <li class="nav-link nav-link-grey"><a href="{% url 'product_list' %}">Other drinks</a></li>
+  </ul>
 </div>
 
