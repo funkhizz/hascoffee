@@ -60,4 +60,31 @@
     font-weight: bolder;
 }
 
+@media only screen and (max-width: 1550px) {
+    .login {
+        margin: 0 5rem;
+    }
+  }
 
+  @media only screen and (max-width: 850px) {
+    .login {
+        margin: 0 5rem;
+    }
+    .login-form-right {
+        height: 100%;
+
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .login-form-left {
+        grid-column: 1 / -1;
+        margin-bottom: 2rem;
+    }
+    .login-form-right {
+        grid-column: 1 / -1;
+        margin-bottom: 2rem;
+    }
+  }
+
+ 
