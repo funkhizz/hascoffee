@@ -33,8 +33,9 @@
 
             <div class="shopping-footer">
                 <a href="{% url 'carts:checkout_home' %}" class="return-link">&lt; Return to information</a>
-                <form action="{% url 'carts:checkout_shipping' %}" name="is_done" value='success' method="post">
+                <form action="{% url 'carts:success_payment' %}" method="POST">
                 {% csrf_token%}
+                <input type="hidden" name="is_done" value='success' >
                 <button class="news-button">
                     Pay
                 </button>

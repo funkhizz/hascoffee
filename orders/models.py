@@ -54,14 +54,16 @@ class Order(models.Model):
         billing_profile = self.billing_profile
         shipping_address = self.shipping_address
         total = self.total
-        if self.total < 0:
+        new_total = float(total)
+        if new_total < 0:
             return False
-        elif billing_profile and shipping_address and total > 0:
+        elif billing_profile and shipping_address and new_total > 0:
             return True
         return False
 
     def order_paid(self):
         if self.check_done():
+            print('hey')
             self.status = 'paid'
             self.save()
         return self.status

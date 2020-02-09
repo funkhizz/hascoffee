@@ -114,7 +114,8 @@ def checkout_shipping(request):
     order_obj = None
     cart_obj, cart_created = Cart.objects.new_or_get(request)
     email = request.POST.get('email')
-    request.session['email_id'] = email
+    if email:
+        request.session['email_id'] = email
     billing_profile, billing_profile_created = BillingProfile.objects.new_or_get(request)
     address = Address.objects.create (
         billing_profile=billing_profile,
@@ -127,24 +128,31 @@ def checkout_shipping(request):
         country=country,
         post_code=post_code,
         phone=phone
-)
+    )
     if billing_profile is not None:
         order_obj , order_obj_created = Order.objects.new_or_get(billing_profile, cart_obj)
         if address:
             order_obj.shipping_address = address
             order_obj.save()
     cartItems = CartItem.objects.filter(cart=cart_obj.id)
+
     context = {
         'billing_profile': billing_profile,
         'object': order_obj,
         'cart_items': cartItems,
         'address': address
     }
-    if request.POST.get('is_done') == 'success':
-        order_obj.mark_paid()
-        del request.session['cart_id']
-        return redirect("carts:success_payment")
+
     return render(request, 'checkout_shipping.html', context)
 
 def success_payment(request):
-    return render(request, 'success_payment.html', {})
+    cart_obj, cart_created = Cart.objects.new_or_get(request)
+    email = request.session.get('email_id')
+    billing_profile = BillingProfile.objects.filter(email=email).order_by('-timestamp').first()
+    order_obj , order_obj_created = Order.objects.new_or_get(billing_profile, cart_obj)
+    request_from = request.POST.get('is_done')
+    if request_from == 'success':
+        order_obj.order_paid()
+        del request.session['cart_id']
+        del request.session['cart_items']
+        return render(request, 'success_payment.html', {})

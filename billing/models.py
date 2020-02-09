@@ -14,7 +14,7 @@ class BillingProfileManager(models.Manager):
             obj, created = self.model.objects.get_or_create(user=user, email=user.email)
         else:
             guest_email = GuestEmail.objects.create(email=email)
-            guest_email_obj = GuestEmail.objects.get(id=guest_email.id)
+            guest_email_obj, guest_email_obj_created = GuestEmail.objects.get_or_create(id=guest_email.id)
             obj = self.model.objects.create(email=guest_email_obj)
         return obj, created
 
