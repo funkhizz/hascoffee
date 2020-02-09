@@ -44,13 +44,11 @@ def register(request):
         return render(request, 'register.html', context)
 
 def login(request):
-    context = {}
     next_ = request.GET.get('next')
     next_post = request.POST.get('next')
     redirect_path = next_ or next_post or None
     if request.user.is_authenticated==False:
         if request.method == "POST":
-            # Register user
             email = request.POST['email']
             password = request.POST['password']
             user = auth.authenticate(email=email, password=password)
@@ -68,7 +66,7 @@ def login(request):
                 return render(request, 'login.html', context)
         else:
             return render(request, 'login.html', {})
-    return render(request, 'login.html', context)
+    return redirect('dashboard')
 
 def logout(request):
     next_ = request.GET.get('next')
