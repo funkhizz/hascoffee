@@ -73,20 +73,12 @@ def login(request):
 def logout(request):
     next_ = request.GET.get('next')
     next_post = request.POST.get('next')
+    print(next_, next_post)
     redirect_path = next_ or next_post or None
     if is_safe_url(redirect_path, request.get_host()):
-        cart_items = request.session.get('cart_items')
-        cart_id = request.session.get('cart_id')
         auth.logout(request)
-        request.session['cart_items'] = cart_items
-        request.session['cart_id'] = cart_id
-
         return redirect(redirect_path)
-    cart_items = request.session.get('cart_items')
-    cart_id = request.session.get('cart_id')
     auth.logout(request)
-    request.session['cart_items'] = cart_items
-    request.session['cart_id'] = cart_id
     return redirect('login')
 
 def dashboard(request):

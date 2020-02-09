@@ -104,24 +104,16 @@ def checkout_shipping(request):
     order_obj = None
     cart_obj, cart_created = Cart.objects.new_or_get(request)
     email = request.POST.get('email')
+    request.session['email_id'] = email
+    billing_profile, billing_profile_created = BillingProfile.objects.new_or_get(request)
 
-    user = request.user
-    billing_profile = None
-    if user.is_authenticated:
-        billing_profile, billing_profile_created = BillingProfile.objects.get_or_create(user=user, email=user.email)
-    else:
-        guest_email = GuestEmail.objects.create(email=email)
-        guest_email_obj = GuestEmail.objects.get(id=guest_email.id)
-        billing_profile = BillingProfile.objects.create(email=guest_email_obj)
-
-    order_qs = Order.objects.filter(cart=cart_obj, active=True)
     if billing_profile is not None:
-        if order_qs.exists():
-            order_qs.update(active=False)
-        else:
-            order_obj = Order.objects.create(billing_profile=billing_profile, cart=cart_obj)
+        order_obj , order_obj_created = Order.objects.new_or_get(billing_profile, cart_obj)
+    cartItems = CartItem.objects.filter(cart=cart_obj.id)
+
     context = {
         'billing_profile': billing_profile,
-        'object': order_obj
+        'object': order_obj,
+        'cart_items': cartItems
     }
     return render(request, 'checkout_shipping.html', context)

@@ -1,8 +1,22 @@
 from django.db import models
 from django.conf import settings
 from django.db.models.signals import post_save
-
+from accounts.models import GuestEmail
 User = settings.AUTH_USER_MODEL
+
+class BillingProfileManager(models.Manager):
+    def new_or_get(self, request):
+        user = request.user
+        email = request.session.get('email_id')
+        created = False
+        obj = None
+        if user.is_authenticated:
+            obj, created = self.model.objects.get_or_create(user=user, email=user.email)
+        else:
+            guest_email = GuestEmail.objects.create(email=email)
+            guest_email_obj = GuestEmail.objects.get(id=guest_email.id)
+            obj = self.model.objects.create(email=guest_email_obj)
+        return obj, created
 
 class BillingProfile(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
@@ -10,6 +24,8 @@ class BillingProfile(models.Model):
     active = models.BooleanField(default=True)
     update = models.DateField(auto_now=True)
     timestamp = models.DateTimeField(auto_now_add=True)
+
+    objects = BillingProfileManager()
 
     def __str__(self):
         return self.email
