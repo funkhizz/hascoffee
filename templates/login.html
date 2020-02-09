@@ -24,7 +24,7 @@
       {% csrf_token %}
       <h2 class="login-form-title">Login</h2>
       <input type="hidden" name='next' value='{% url "carts:checkout_home" %}'>
-      <input name="email" type="email" value="{{account.email}}" class="login-form-left-input" placeholder="Email" required>
+      <input name="email" type="email" class="login-form-left-input" placeholder="Email" required>
       <input name="password" type="password" class="login-form-left-input" placeholder="Password" required>
       <button class="news-button btn-login"><span>Login</span><span>&rarr;</button>
     </form>

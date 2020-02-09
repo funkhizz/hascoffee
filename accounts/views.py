@@ -44,9 +44,6 @@ def register(request):
         return render(request, 'register.html', context)
 
 def login(request):
-    context = {
-    "account": {"email": None}
-    }
     next_ = request.GET.get('next')
     next_post = request.POST.get('next')
     redirect_path = next_ or next_post or None
@@ -55,9 +52,6 @@ def login(request):
             email = request.POST['email']
             password = request.POST['password']
             user = auth.authenticate(email=email, password=password)
-            context = {
-            "account": {"email": email}
-            }
             if user is not None:
                 auth.login(request, user)
                 if is_safe_url(redirect_path, request.get_host()):
@@ -66,9 +60,8 @@ def login(request):
                     return redirect('dashboard')
             else:
                 messages.error(request, 'Invalid credentials')
-                return render(request, 'login.html', context)
-        else:
-            return render(request, 'login.html', {})
+                return redirect('login')
+        return render(request, 'login.html', {})
     return redirect('dashboard')
 
 def logout(request):
