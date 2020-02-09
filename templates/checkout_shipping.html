@@ -2,6 +2,8 @@
 {% load static %}
 {% block base_head%}
 <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+<link rel="stylesheet" href="{% static 'css/checkout-shipping.css' %}">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
 
@@ -13,11 +15,27 @@
             <div class="checkout-left-title">
                 Hascoffee
             </div>
+            <div class="shipping-table-wrap">
+              <div class="shipping-table" style="border-bottom: 1px solid #d9d9d9;">
+                <div class="shipping-contact">
+                  <p style="color: #7e7e7e;">Contact: </p>
+                  <p>{{billing_profile.email}}</p>
+                  <a href="{% url 'carts:checkout_home' %}" class="ship-table-link">Change</a>
+                </div>
+              </div>
+              <div class="shipping-table">
+                <div class="shipping-contact">
+                  <p style="color: #7e7e7e">Ship to: </p>
+                  <p>{% if address.company %} {{address.company}} {% endif %} {{address.address_1}}, {{address.city}}, {{address.post_code}}, {{address.country}} </p>
+                  <a href="{% url 'carts:checkout_home' %}" class="ship-table-link">Change</a>
+                </div>
+              </div>
+            </div>
 
             <div class="shopping-footer">
-                <a href="{% url 'carts:cart' %}" class="return-link">&lt; Return to cart</a>
+                <a href="{% url 'carts:checkout_home' %}" class="return-link">&lt; Return to information</a>
                 <button class="news-button">
-                    Continue to shopping
+                    Continue to payment
                 </button>
             </div>
         </div>

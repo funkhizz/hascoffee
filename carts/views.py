@@ -8,6 +8,7 @@ from orders.models import Order
 from billing.models import BillingProfile
 from accounts.models import GuestEmail
 from django.contrib import messages
+from addresses.models import Address
 
 User = get_user_model()
 
@@ -101,19 +102,44 @@ def checkout_home(request):
     return render(request, 'checkout.html', context)
 
 def checkout_shipping(request):
+    first_name = request.POST.get('first_name')
+    last_name = request.POST.get('last_name')
+    company = request.POST.get('company', '')
+    address_1 = request.POST.get('address_1')
+    address_2 = request.POST.get('address_2', '')
+    city = request.POST.get('city')
+    country = request.POST.get('country')
+    post_code = request.POST.get('post_code')
+    phone = request.POST.get('phone', '')
     order_obj = None
     cart_obj, cart_created = Cart.objects.new_or_get(request)
     email = request.POST.get('email')
     request.session['email_id'] = email
     billing_profile, billing_profile_created = BillingProfile.objects.new_or_get(request)
-
+    address = Address.objects.create (
+        billing_profile=billing_profile,
+        first_name=first_name,
+        last_name=last_name,
+        company=company,
+        address_1=address_1,
+        address_2=address_2,
+        city=city,
+        country=country,
+        post_code=post_code,
+        phone=phone
+)
     if billing_profile is not None:
         order_obj , order_obj_created = Order.objects.new_or_get(billing_profile, cart_obj)
+        if address:
+            order_obj.shipping_address = address
+            order_obj.save()
     cartItems = CartItem.objects.filter(cart=cart_obj.id)
+
 
     context = {
         'billing_profile': billing_profile,
         'object': order_obj,
-        'cart_items': cartItems
+        'cart_items': cartItems,
+        'address': address
     }
     return render(request, 'checkout_shipping.html', context)

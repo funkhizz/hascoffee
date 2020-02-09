@@ -3,6 +3,7 @@ from carts.models import Cart
 from hascoffee.utils import unique_order_id_generator
 from django.db.models.signals import pre_save, post_save
 from billing.models import BillingProfile
+from addresses.models import Address
 import math
 
 ORDER_STATUS_CHOICES = (
@@ -26,6 +27,7 @@ class OrderManager(models.Manager):
 
 class Order(models.Model):
     billing_profile = models.ForeignKey(BillingProfile, on_delete=models.CASCADE, blank=True, null=True)
+    shipping_address = models.ForeignKey(Address, related_name="shipping_address", on_delete=models.CASCADE, blank=True, null=True)
     order_id = models.CharField(max_length=120, blank=True)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     status = models.CharField(max_length=120, default='created', choices=ORDER_STATUS_CHOICES)
