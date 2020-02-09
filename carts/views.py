@@ -134,12 +134,17 @@ def checkout_shipping(request):
             order_obj.shipping_address = address
             order_obj.save()
     cartItems = CartItem.objects.filter(cart=cart_obj.id)
-
-
     context = {
         'billing_profile': billing_profile,
         'object': order_obj,
         'cart_items': cartItems,
         'address': address
     }
+    if request.POST.get('is_done') == 'success':
+        order_obj.mark_paid()
+        del request.session['cart_id']
+        return redirect("carts:success_payment")
     return render(request, 'checkout_shipping.html', context)
+
+def success_payment(request):
+    return render(request, 'success_payment.html', {})

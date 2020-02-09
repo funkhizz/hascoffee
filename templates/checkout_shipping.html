@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block content %}
-{{object.order_id}} ---- {{object.cart}}
 <div class="checkout-page">
     <div class="checkout-page-left">
         <div class="shipping-content">
@@ -34,9 +33,12 @@
 
             <div class="shopping-footer">
                 <a href="{% url 'carts:checkout_home' %}" class="return-link">&lt; Return to information</a>
+                <form action="{% url 'carts:checkout_shipping' %}" name="is_done" value='success' method="post">
+                {% csrf_token%}
                 <button class="news-button">
-                    Continue to payment
+                    Pay
                 </button>
+              </form>
             </div>
         </div>
     </div>
