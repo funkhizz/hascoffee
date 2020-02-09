@@ -68,7 +68,7 @@ def login(request):
                 return render(request, 'login.html', context)
         else:
             return render(request, 'login.html', {})
-    return redirect('dashboard')
+    return redirect('login')
 
 def logout(request):
     next_ = request.GET.get('next')
