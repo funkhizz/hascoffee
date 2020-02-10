@@ -3,6 +3,11 @@ from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.contrib.auth import get_user_model
 from django.utils.http import is_safe_url
+from billing.models import BillingProfile
+from orders.models import Order
+from carts.models import Cart, CartItem
+from itertools import chain
+
 User = get_user_model()
 
 # from contacts.models import Contact
@@ -73,7 +78,16 @@ def logout(request):
 
 def dashboard(request):
     if request.user.is_authenticated:
-        return render(request, 'dashboard.html', {})
+        billing_profile =  BillingProfile.objects.get(user=request.user)
+        orders = Order.objects.filter(billing_profile=billing_profile, status='paid')
+        qs_random = []
+        for item in orders:
+            qs_random.append(item.cart)
+        context = {
+            'carts': qs_random,
+            'orders': orders
+        }
+        return render(request, 'dashboard.html', context)
     return render(request, 'login.html', {})
 
 

@@ -22,10 +22,24 @@
     <h3>
         Order History
     </h3>
+
+    {% if carts %}
+        {% for cart in carts %}
+        <div style="border: 1px solid black; padding: 1rem;">
+        Order number is {{cart.order_set.all}}
+            {% for item in cart.cartitem_set.all %}
+                <div>
+                    <span>{{item.product}} - {{item.quantity}} items x £{{item.product.price}} = {{item.line_total}}</span>
+                </div>
+            {% endfor %}
+            Total price: £{{order.total}}
+        </div>
+        {% endfor %}
+    {% else%}
     <p style="color: #919191; font-size: 1.6rem">
         You haven't placed any orders yet.
-
     </p>
+    {% endif %}
 
     </div>
     <div class="login-form-right">

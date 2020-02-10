@@ -12,7 +12,6 @@ ORDER_STATUS_CHOICES = (
     ('paid', 'Paid'),
     ('shipped', 'Shipped'),
     ('refunded', 'Refunded'),
-
 )
 
 class OrderManager(models.Manager):
@@ -98,9 +97,8 @@ post_save.connect(post_save_order, sender=Order)
 def post_save_order_products(sender, instance, *args, **kwargs):
     if instance.status == 'paid':
         cartitems = CartItem.objects.filter(cart=instance.cart)
-        print(cartitems)
         for item in cartitems:
-            product = (Product.objects.get(title=item.product))
+            product = (Product.objects.get(id=item.product.id))
             product.item_sold += item.quantity
             product.save()
 post_save.connect(post_save_order_products, sender=Order)
