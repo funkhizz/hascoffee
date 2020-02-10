@@ -61,4 +61,26 @@
     font-weight: bolder;
 }
 
+.password-input {
+    display: flex;
+}
 
+.password-input {
+    /* Tell the input to use all the available space */
+    /* And hide the input's outline, so the form looks like the outline */
+    border:none;
+}
+
+.password-input {
+    outline: none;
+
+}
+
+
+.click-button {
+    /* Just a little styling to make it pretty */
+    border: none;
+    color: black;
+    background: white;
+    font-size: 1.5rem;
+  }
