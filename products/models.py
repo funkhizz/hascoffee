@@ -7,6 +7,7 @@ from hascoffee.utils import unique_slug_generator
 from django.urls import reverse
 from django.db.models.aggregates import Count
 from random import randint
+from django.db.models import Q
 
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
@@ -22,11 +23,26 @@ def upload_image_path(instance, filename):
     final_filename = '{new_filename}{ext}'.format(new_filename=new_filename, ext=ext)
     return "products/{date_time}/{title}/{final_filename}".format(date_time=formatedDate, title=title, final_filename=final_filename)
 
+class ProductQuerySet(models.query.QuerySet):
+    def active(self):
+        return self.filter(is_published=True)
+
+    def search(self, query):
+        lookups = Q(title__icontains=query) | Q(description__icontains=query) | Q(ingridients__icontains=query)
+        return self.filter(lookups).distinct()
+
 class ProductManager(models.Manager):
     def random(self):
         count = self.aggregate(count=Count('id'))['count']
         random_index = randint(0, count - 1)
         return self.all()[random_index]
+
+    def get_queryset(self):
+        return ProductQuerySet(self.model, using=self._db)
+
+    def search(self, query):
+        return self.get_queryset().active().search(query)
+
 
 class Product(models.Model):
     title = models.CharField(max_length=200)

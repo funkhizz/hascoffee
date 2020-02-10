@@ -27,8 +27,8 @@
         </a>
     </div>
       <div class="right-block-form">
-        <form action="">
-            <input type="text">
+        <form action="{% url 'search' %}" action="GET">
+            <input type="text" name='q' placeholder="Search">
           </form>
       </div>
     </div>

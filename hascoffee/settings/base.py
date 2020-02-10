@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'billing',
     'addresses',
     'storages',
+    'search'
 ]
 
 MIDDLEWARE = [
