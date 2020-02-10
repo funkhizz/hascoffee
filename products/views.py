@@ -11,13 +11,12 @@ def product_detail(request, slug):
     instance = get_object_or_404(Product, slug=slug)
     cart_obj, new_obj = Cart.objects.new_or_get(request)
     qs_random = []
-    for i in range(6):
+    while len(qs_random) < 6:
         randomquery = Product.objects.random()
-        if randomquery in qs_random:
+        if randomquery in qs_random or randomquery==instance:
             continue
         else:
             qs_random.append(randomquery)
-    qs_random.remove(instance)
     result_list = list(chain(qs_random))
     context = {
         'object_detail': instance,
