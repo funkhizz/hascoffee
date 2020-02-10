@@ -8,14 +8,9 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 {% endblock %}
-
 {% block content %}
-
-
 {% include 'snippets/header.html' %}
 {% include 'snippets/breadcrumb.html' with instance="Dashboard" %}
-
-
 <div class="dashboard">
     <div class="login-form-left">
         {% include 'snippets/alert.html' %}
@@ -25,14 +20,14 @@
 
     {% if carts %}
         {% for cart in carts %}
-        <div style="border: 1px solid black; padding: 1rem;">
-        Order number is {{cart.order_set.all}}
+        <div style="border: 1px solid black; padding: 1rem; font-size: 1.2rem">
+        Order number is: {{cart.order.order_id}}
             {% for item in cart.cartitem_set.all %}
                 <div>
                     <span>{{item.product}} - {{item.quantity}} items x £{{item.product.price}} = {{item.line_total}}</span>
                 </div>
             {% endfor %}
-            Total price: £{{order.total}}
+            Total price: £{{cart.total}}
         </div>
         {% endfor %}
     {% else%}
