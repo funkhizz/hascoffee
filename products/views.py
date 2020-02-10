@@ -4,17 +4,26 @@ from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .quantity_choices import quantity_choices, grind_choices
 from carts.models import Cart
+from itertools import chain
+
 
 def product_detail(request, slug):
     instance = get_object_or_404(Product, slug=slug)
     cart_obj, new_obj = Cart.objects.new_or_get(request)
-
-    randomquery = [Product.objects.random() for i in range(6)]
+    qs_random = []
+    for i in range(6):
+        randomquery = Product.objects.random()
+        if randomquery in qs_random:
+            continue
+        else:
+            qs_random.append(randomquery)
+    qs_random.remove(instance)
+    result_list = list(chain(qs_random))
     context = {
         'object_detail': instance,
         'quantity_choices': quantity_choices,
         'grind_choices': grind_choices,
-        'random_products': randomquery,
+        'random_products': result_list,
         'cart': cart_obj
     }
     return render(request, "product_detail.html", context)
