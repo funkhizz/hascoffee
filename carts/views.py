@@ -89,6 +89,11 @@ def remove_from_cart(request):
     return redirect("carts:cart")
 
 def checkout_home(request):
+    
+    try:
+        del request.session['checkout']
+    except:
+        pass
     cart_obj, cart_created = Cart.objects.new_or_get(request)
     if cart_created and CartItem.objects.filter(cart=cart_obj.id).count() == 0:
         return redirect("carts:cart")
@@ -97,6 +102,8 @@ def checkout_home(request):
         'cart_items': cartItems,
         'cart': cart_obj,
     }
+    request.session['checkout'] = 'checkout'
+    print(request.session['checkout'])
     return render(request, 'checkout.html', context)
 
 def checkout_shipping(request):
