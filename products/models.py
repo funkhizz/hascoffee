@@ -43,7 +43,7 @@ class Product(models.Model):
     photo_3 = models.ImageField(upload_to=upload_image_path, blank=True)
     photo_4 = models.ImageField(upload_to=upload_image_path, blank=True)
     photo_5 = models.ImageField(upload_to=upload_image_path, blank=True)
-    best_seller = models.BooleanField(default=False)
+    item_sold = models.IntegerField(default=0)
     is_published = models.BooleanField(default=True)
     timestamp = models.DateTimeField(default=datetime.now)
 

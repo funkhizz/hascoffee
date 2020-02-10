@@ -1,9 +1,10 @@
 from django.db import models
-from carts.models import Cart
+from carts.models import Cart, CartItem
 from hascoffee.utils import unique_order_id_generator
 from django.db.models.signals import pre_save, post_save
 from billing.models import BillingProfile
 from addresses.models import Address
+from products.models import Product
 import math
 
 ORDER_STATUS_CHOICES = (
@@ -92,3 +93,14 @@ def post_save_order(sender, instance, created, *args, **kwargs):
         instance.update_total()
 
 post_save.connect(post_save_order, sender=Order)
+
+
+def post_save_order_products(sender, instance, *args, **kwargs):
+    if instance.status == 'paid':
+        cartitems = CartItem.objects.filter(cart=instance.cart)
+        print(cartitems)
+        for item in cartitems:
+            product = (Product.objects.get(title=item.product))
+            product.item_sold += item.quantity
+            product.save()
+post_save.connect(post_save_order_products, sender=Order)

@@ -4,6 +4,8 @@ dl, ol, ul {
 }
 
 .carousel-item img {
+    object-fit: cover;
+    background-position: center;
     height: 85vh;
 
 }
@@ -170,8 +172,7 @@ dl, ol, ul {
 
 .product-list-section {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin: 0 auto;
+    grid-template-columns: repeat(4, minmax(24rem, 1fr));
     grid-gap: 2.6rem;
 }
 
@@ -190,8 +191,9 @@ dl, ol, ul {
 }
 
 .product-pic {
-    height: 30rem;
+    height: 25rem;
     width: 100%;
+    object-fit: cover;
 }
 
 .small:hover .product-title {
@@ -294,7 +296,7 @@ dl, ol, ul {
 }
 
 .new-grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(23rem, 1fr));
 }
 
 .mt-3 {

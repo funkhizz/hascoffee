@@ -1,1 +1,32 @@
-success
+{% extends 'base.html' %}
+{% load static %}
+{% block base_head%}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+
+
+{% include 'snippets/header.html' with headerstyle="grey-header" %}
+
+<div class="pre-section">
+  <div class="section-name">Thank you for your order</div>
+
+</div>
+<div class="success-payment">
+
+
+
+</div>
+{% include 'snippets/footer.html' %}
+
+
+
+
+{% endblock %}
