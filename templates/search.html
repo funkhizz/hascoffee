@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block base_head%}
+<link rel="stylesheet" href="{% static 'css/header.css' %}">
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<link rel="stylesheet" href="{% static 'css/breadcrumb.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block content %}
+
+
+{% include 'snippets/header.html' with headerstyle="grey-header" %}
+{% include 'snippets/breadcrumb.html' with instance="Coffee" %}
+
+
+<div class="search">
+
+
+
+<div class="product-list-section products-row-gap">
+    {% for obj in object_list %}
+    <div class="product product-item">
+        <a href="{{obj.get_absolute_url}}">
+            <div class="product-pic">
+                <img src="{{ obj.photo_main.url }}" alt="" class="product-pic">
+            </div>
+            <p class="product-title">{{ obj.title}}</p>
+            <p class="product-content">{{ obj.ingridients}}</p>
+            <p class="product-price">£{{obj.price}}</p>
+            </a>
+    </div>
+    {% endfor %}
+</div>
+
+
+</div>
+{% include 'snippets/footer.html' %}
+
+
+
+
+{% endblock %}
