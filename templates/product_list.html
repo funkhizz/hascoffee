@@ -21,12 +21,16 @@
     <div class="section-sort">
         <div class="sort-by">Sort by</div>
         <div class="select">
-            <select class="select-form">
-                <option value="all">Coffee</option>
-                <option value="price-low">Price, low to high</option>
-                <option value="price-high">Price, high to low</option>
-                <option value="date-new">Date, new to old</option>
-            </select>
+          <form action="{% url 'product_list' %}" method="POST">
+            {% csrf_token %}
+            <select class="select-form" onchange="form.submit()" name="filter" >
+              <option {% if request.session.select_val == 'all' %} selected {% endif %} value="all">Coffee</option>
+              <option {% if request.session.select_val == 'price-low' %} selected {% endif %}  value="price-low">Price, low to high</option>
+              <option {% if request.session.select_val == 'price-high' %} selected {% endif %} value="price-high">Price, high to low</option>
+              <option {% if request.session.select_val == 'date-old' %} selected {% endif %} value="date-old">Date, old to new</option>
+          </select>
+          </form>
+
         </div>
     </div>
 </div>

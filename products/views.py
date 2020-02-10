@@ -28,12 +28,47 @@ def product_detail(request, slug):
     return render(request, "product_detail.html", context)
 
 def product_list(request):
-    products = Product.objects.order_by('-timestamp').filter(is_published=True)
-    paginator = Paginator(products, 10)
-    page = request.GET.get('page')
-    paged_products = paginator.get_page(page)
-    context = {
-        'object_list': paged_products,
-    }
+    context = {}
+    filter_params = request.POST.get('filter')
+    if filter_params:
+        if filter_params == 'all':
+            products = Product.objects.order_by('-timestamp').filter(is_published=True)
+            context = {
+                'object_list': products
+            }
+            request.session['select_val'] = 'all'
+        if filter_params == 'price-low':
+            products = Product.objects.order_by('price').filter(is_published=True)
+            context = {
+                'object_list': products
+            }
+            request.session['select_val'] = 'price-low'
+
+        if filter_params == 'price-high':
+            products = Product.objects.order_by('-price').filter(is_published=True)
+            context = {
+                'object_list': products
+            }
+            request.session['select_val'] = 'price-high'
+
+        if filter_params == 'date-old':
+            products = Product.objects.order_by('timestamp').filter(is_published=True)
+            context = {
+                'object_list': products
+            }
+            request.session['select_val'] = 'date-old'
+
+    else:
+        try:
+            del request.session['select_val']
+        except:
+            pass
+        products = Product.objects.order_by('-timestamp').filter(is_published=True)
+        paginator = Paginator(products, 10)
+        page = request.GET.get('page')
+        paged_products = paginator.get_page(page)
+        context = {
+            'object_list': paged_products,
+        }
     return render(request, 'product_list.html', context)
 
