@@ -188,3 +188,16 @@ select {
     }
 
 }
+
+.login-reset {
+    color: #e20613;
+    font-size: 1.6rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}   
+
+.login-reset:hover {
+    color: #e20613;
+    font-size: 1.6rem;
+    text-decoration: none;
+}

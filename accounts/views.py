@@ -18,13 +18,12 @@ def register(request):
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
         password = request.POST['password']
-        password2 = request.POST['password2']
         email = request.POST['email']
         context = {
             "account": {"first_name": first_name,
             "last_name": last_name, "email": email}
         }
-        if password == password2:
+        if password:
             if User.objects.filter(email=email).exists():
                 messages.error(request, 'Email is taken')
                 return render(request, 'register.html', context)

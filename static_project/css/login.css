@@ -29,6 +29,7 @@
 .btn-login {
     margin-top: 1.5rem;
     cursor: pointer;
+    margin-bottom: 2rem;
 }
 
 .login-form-left {
@@ -87,4 +88,12 @@
     }
   }
 
+.password-reset {
+    color: #e30e1b;
+    font-size: 1.5rem;
+}
+.password-reset:hover {
+    color: #e30e1b;
+    text-decoration: none;
+}
  

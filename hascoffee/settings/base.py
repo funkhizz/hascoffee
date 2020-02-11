@@ -165,3 +165,10 @@ AWS_S3_REGION_NAME = 'eu-west-2'
 AWS_S3_HOST = 's3.amazonaws.com'
 S3_USE_SIGV4 = True
 
+EMAIL_HOST = config('EMAIL_HOST')
+# Port for sending e-mail.
+EMAIL_PORT = config('EMAIL_PORT')
+# Optional SMTP authentication information for EMAIL_HOST.
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = True
