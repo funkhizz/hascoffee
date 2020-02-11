@@ -123,3 +123,4 @@ dmypy.json
 .vscode
 venv/
 local.py
+.env
