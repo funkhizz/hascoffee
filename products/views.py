@@ -10,13 +10,19 @@ from itertools import chain
 def product_detail(request, slug):
     instance = get_object_or_404(Product, slug=slug)
     cart_obj, new_obj = Cart.objects.new_or_get(request)
+    print(Product.objects.all().count() + 1)
     qs_random = []
-    while len(qs_random) < 6:
-        randomquery = Product.objects.random()
-        if randomquery in qs_random or randomquery==instance:
-            continue
+
+    while len(qs_random) < Product.objects.all().count() - 1:
+        if len(qs_random) == 6:
+            break
         else:
-            qs_random.append(randomquery)
+            randomquery = Product.objects.random()
+            print(randomquery)
+            if randomquery in qs_random or randomquery.title==instance.title:
+                continue
+            else:
+                qs_random.append(randomquery)
     result_list = list(chain(qs_random))
     context = {
         'object_detail': instance,
